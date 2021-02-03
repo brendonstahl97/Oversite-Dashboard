@@ -2,7 +2,6 @@
   "name": "black-dashboard-react",
   "version": "1.2.0",
   "private": true,
-  "homepage": "https://demos.creative-tim.com/black-dashboard-react/#/admin/dashboard",
   "engines": {
     "node": "12.x"
   },
