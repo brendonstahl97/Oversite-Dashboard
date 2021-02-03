@@ -1,51 +1,36 @@
 {
-  "name": "black-dashboard-react",
-  "version": "1.2.0",
-  "private": true,
-  "homepage": "https://demos.creative-tim.com/black-dashboard-react/#/admin/dashboard",
-  "dependencies": {
-    "@fortawesome/fontawesome-free": "5.15.1",
-    "bootstrap": "4.5.3",
-    "chart.js": "2.9.4",
-    "classnames": "2.2.6",
-    "node-sass": "4.14.1",
-    "node-sass-package-importer": "5.3.2",
-    "perfect-scrollbar": "1.5.0",
-    "prop-types": "15.7.2",
-    "react": "17.0.1",
-    "react-chartjs-2": "2.11.1",
-    "react-dom": "17.0.1",
-    "react-notification-alert": "0.0.13",
-    "react-router-dom": "5.2.0",
-    "react-scripts": "4.0.1",
-    "reactstrap": "8.7.1"
-  },
+  "name": "dashboard-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && gulp licenses",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
-    "compile-scss": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js src/assets/scss/black-dashboard-react.scss src/assets/css/black-dashboard-react.css",
-    "minify-scss": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js src/assets/scss/black-dashboard-react.scss src/assets/css/black-dashboard-react.min.css --output-style compressed",
-    "map-scss": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js src/assets/scss/black-dashboard-react.scss src/assets/css/black-dashboard-react.css --source-map true"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "optionalDependencies": {
-    "eslint-plugin-flowtype": "5.2.0",
-    "jquery": "3.5.1",
-    "typescript": "4.1.2"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "seed": "node scripts/seedDB.js",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
   },
   "devDependencies": {
-    "gulp": "4.0.2",
-    "gulp-append-prepend": "1.0.8"
-  }
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.7"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.3",
+    "mongoose": "^5.3.16",
+    "if-env": "^1.0.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brendonstahl97/dashboard-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brendonstahl97/dashboard-test/issues"
+  },
+  "homepage": "https://github.com/brendonstahl97/dashboard-test#readme"
 }

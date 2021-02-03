@@ -1,7 +1,9 @@
 /build
 /node_modules
+client/node_modules
+/client/node_modules
 package-lock.json
-/build
+client/build
 .vscode
 .eslintcache
 node_modules
