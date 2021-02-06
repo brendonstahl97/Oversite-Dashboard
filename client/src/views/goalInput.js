@@ -1,12 +1,32 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Row, Col, Card, CardHeader, CardTitle, Button, Form, FormGroup, Label, Input, CardBody } from 'reactstrap';
 
-function newGoal(props) {
+function NewGoal(props) {
+
+  //TODO:  
+  //Hook up radio buttons to updateState
+  //Send state info to backend
+  //Potentially refactor to change component where state lives.  Add Context.
+
+  const [goalState, setGoalState] = useState({
+    goal: "",
+    completionDate: "",
+    description: "",
+    habit: undefined,
+    consequences: [],
+  });
 
   const handleClick = (e) => {
     e.preventDefault();
-
+    console.table(goalState);
     console.log('Button click ...');
+  };
+
+  const updateState = (e) => {
+    setGoalState({
+      ...goalState,
+      [e.target.name]: e.target.value
+    });
   };
 
   return (
@@ -24,7 +44,13 @@ function newGoal(props) {
               <Form>
                 <FormGroup>
                   <Label for="exampleEmail">Goal Name</Label>
-                  <Input type="text" name="goal" id="newGoal" placeholder="Be more awesome" />
+                  <Input
+                    type="text"
+                    name="goal"
+                    id="newGoal"
+                    placeholder="Be more awesome"
+                    onChange={updateState}
+                  />
                 </FormGroup>
                 <FormGroup>
                   <Label for="exampleDate">Completion Date</Label>
@@ -33,15 +59,21 @@ function newGoal(props) {
                     name="date"
                     id="completionDate"
                     placeholder="date placeholder"
+                    onChange={updateState}
                   />
                 </FormGroup>
                 <FormGroup>
                   <Label for="exampleText">Desciption</Label>
-                  <Input type="textarea" name="description" id="description" />
+                  <Input
+                    type="textarea"
+                    name="description"
+                    id="description"
+                    onChange={updateState}
+                  />
                 </FormGroup>
                 <FormGroup>
                   <Label for="exampleSelect">Select</Label>
-                  <Input type="select" name="habit" id="habitSelect">
+                  <Input type="select" name="habit" id="habitSelect" onChange={updateState}>
                     <option id="reduce">Reduce</option>
                     <option id="increase">Increase</option>
                     <option id="repeat">Repeat</option>
@@ -100,4 +132,4 @@ function newGoal(props) {
 
 }
 
-export default newGoal;
+export default NewGoal;
