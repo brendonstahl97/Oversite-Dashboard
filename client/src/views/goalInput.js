@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Card, CardHeader, CardTitle, Button, Form, FormGroup, Label, Input, FormText, CardBody } from 'reactstrap';
+import { Row, Col, Card, CardHeader, CardTitle, Button, Form, FormGroup, Label, Input, CardBody } from 'reactstrap';
 
 const newGoal = (props) => {
   return (
@@ -10,35 +10,37 @@ const newGoal = (props) => {
     
 <Card>
     <CardHeader>
-        <CardTitle tag="h4">Goal Input</CardTitle>
+        <CardTitle tag="h4"><legend>Goal Input</legend></CardTitle>
     </CardHeader>
 
 <CardBody>
     <Form>
       <FormGroup>
         <Label for="exampleEmail">Goal Name</Label>
-        <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
+        <Input type="text" name="goal" id="newGoal" placeholder="Be more awesome" />
       </FormGroup>
       <FormGroup>
-        <Label for="exampleDate">Start Date</Label>
+        <Label for="exampleDate">Completion Date</Label>
         <Input
           type="date"
           name="date"
-          id="exampleDate"
+          id="completionDate"
           placeholder="date placeholder"
         />
       </FormGroup>
       <FormGroup>
-        <Label for="exampleSelect">Select</Label>
-        <Input type="select" name="select" id="exampleSelect">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </Input>
+        <Label for="exampleText">Desciption</Label>
+        <Input type="textarea" name="description" id="description" />
       </FormGroup>
       <FormGroup>
+        <Label for="exampleSelect">Select</Label>
+        <Input type="select" name="habit" id="habitSelect">
+          <option id="reduce">Reduce</option>
+          <option id="increase">Increase</option>
+          <option id="repeat">Repeat</option>
+        </Input>
+      </FormGroup>
+      {/* <FormGroup>
         <Label for="exampleSelectMulti">Select Multiple</Label>
         <Input type="select" name="selectMulti" id="exampleSelectMulti" multiple>
           <option>1</option>
@@ -47,37 +49,27 @@ const newGoal = (props) => {
           <option>4</option>
           <option>5</option>
         </Input>
-      </FormGroup>
-      <FormGroup>
-        <Label for="exampleText">Text Area</Label>
-        <Input type="textarea" name="text" id="exampleText" />
-      </FormGroup>
-      {/* <FormGroup>
-        <Label for="exampleFile">File</Label>
-        <Input type="file" name="file" id="exampleFile" />
-        <FormText color="muted">
-          This is some placeholder block-level help text for the above input.
-          It's a bit lighter and easily wraps to a new line.
-        </FormText>
       </FormGroup> */}
       <FormGroup tag="fieldset">
-        <legend>Radio Buttons</legend>
+        <legend>Consequence</legend>
         <FormGroup check>
           <Label check>
-            <Input type="radio" name="radio1" />{' '}
-            Option one is this and that—be sure to include why it's great
+            <Input type="radio" name="consequence1" id="consequence1"/>{' '}
+            Message someone if I succeed
           </Label>
+          <Input type="text" name="phoneNumber1" id="phoneNumber1" placeholder="123-456-7890" />
         </FormGroup>
         <FormGroup check>
           <Label check>
-            <Input type="radio" name="radio1" />{' '}
-            Option two can be something else and selecting it will deselect option one
+            <Input type="radio" name="consequence2" id="consequence2"/>{' '}
+            Message someone if I fail
           </Label>
+          <Input  type="text" name="phoneNumber2" id="phoneNumber2" placeholder="123-456-7890" />
         </FormGroup>
-        <FormGroup check disabled>
+        <FormGroup check>
           <Label check>
-            <Input type="radio" name="radio1" disabled />{' '}
-            Option three is disabled
+            <Input type="radio" name="noConsequence" id="noConsequence" />{' '}
+            No Consequence 
           </Label>
         </FormGroup>
       </FormGroup>
