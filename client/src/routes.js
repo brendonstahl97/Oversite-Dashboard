@@ -23,6 +23,7 @@ import TableList from "views/TableList.js";
 import Typography from "views/Typography.js";
 import UserProfile from "views/UserProfile.js";
 import Goals from "views/Goals.js";
+import newGoal from "views/goalInput.js";
 
 
 var routes = [
@@ -38,6 +39,13 @@ var routes = [
     name: "View Goals",
     icon: "tim-icons icon-compass-05",
     component: Goals,
+    layout: "/admin",
+  },
+  {
+    path: "/newgoal",
+    name: "New Goal",
+    icon: "tim-icons icon-trophy",
+    component: newGoal,
     layout: "/admin",
   },
   {
