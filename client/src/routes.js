@@ -24,9 +24,17 @@ import Typography from "views/Typography.js";
 import UserProfile from "views/UserProfile.js";
 import Goals from "views/Goals.js";
 import newGoal from "views/GoalInput.js";
+import RegisterUser from "views/RegisterUser.js";
 
 
 var routes = [
+  {
+    path: "/registeruser",
+    name: "Register",
+    icon: "tim-icons icon-atom",
+    component: RegisterUser,
+    layout: "/admin",
+  },
   {
     path: "/dashboard",
     name: "Dashboard",

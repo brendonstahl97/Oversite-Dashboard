@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Row, Col, Card, CardHeader, CardTitle, Button, Form, FormGroup, Label, Input, CardBody } from 'reactstrap';
+import useAxios from 'axios';
 
 function NewGoal(props) {
 
@@ -20,6 +21,10 @@ function NewGoal(props) {
     e.preventDefault();
     console.table(goalState);
     console.log('Button click ...');
+
+    useAxios.post('http//localhost:3000/api/user', { data: "DEMO OBJECT" }).then((res) => console.log(res));
+
+
   };
 
   const updateState = (e) => {

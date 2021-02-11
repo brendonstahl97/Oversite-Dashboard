@@ -6,6 +6,9 @@ router.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../../client/build/'))
 });
 
+router.post('/api/user', (req, res) => {
+  console.log(req);
+});
 
 // If no API routes are hit, send the React app
 router.use((req, res) => {
