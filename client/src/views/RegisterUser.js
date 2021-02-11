@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import useAxios from "axios";
 
 // reactstrap components
 import {
@@ -16,6 +17,33 @@ import {
 } from "reactstrap";
 
 function RegisterUser() {
+
+  const [userState, setUserState] = useState({
+    userId: "",
+    email: "",
+    password: "",
+  });
+
+  const handleClick = (e) => {
+    e.preventDefault();
+
+    console.table(userState);
+    console.log('Button click ...');
+
+    useAxios.post('http//localhost:3000/api/user', { userState }).then((res) => console.log(res));
+
+
+  };
+
+  const updateState = (e) => {
+    setUserState({
+      ...userState,
+      [e.target.name]: e.target.value
+    });
+  };
+
+
+
   return (
     <>
       <div className="content">
@@ -34,7 +62,9 @@ function RegisterUser() {
                         <Input
                           defaultValue=""
                           placeholder="Username"
+                          name="userId"
                           type="text"
+                          onChange={updateState}
                         />
                       </FormGroup>
                     </Col>
@@ -43,7 +73,7 @@ function RegisterUser() {
                         <label htmlFor="exampleInputEmail1">
                           Email address
                         </label>
-                        <Input placeholder="" type="email" />
+                        <Input placeholder="" name="email" type="email" onChange={updateState} />
                       </FormGroup>
                     </Col>
                   </Row>
@@ -53,7 +83,9 @@ function RegisterUser() {
                         <label>Password</label>
                         <Input
                           placeholder=""
+                          name="password"
                           type="password"
+                          onChange={updateState}
                         />
                       </FormGroup>
                     </Col>
@@ -61,7 +93,7 @@ function RegisterUser() {
                 </Form>
               </CardBody>
               <CardFooter>
-                <Button className="btn-fill" color="primary" type="submit">
+                <Button className="btn-fill" color="primary" type="submit" onClick={handleClick}>
                   Submit
                 </Button>
               </CardFooter>
