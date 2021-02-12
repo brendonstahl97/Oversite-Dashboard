@@ -21,6 +21,8 @@ const RegisterModal = (props) => {
   const history = useHistory();
 
   const [userState, setUserState] = useState({
+    firstName: "Dingus",
+    lastName: "Dangus",
     userId: "",
     email: "",
     password: "",
@@ -32,7 +34,7 @@ const RegisterModal = (props) => {
     console.table(userState);
     console.log('Button click ...');
 
-    useAxios.post('/api/test', { userState }).then((res) => console.log(res));
+    useAxios.post('/api/auth/signup', { userState }).then((res) => console.log(res));
 
 
   };
@@ -61,8 +63,32 @@ const RegisterModal = (props) => {
                       <label>Username</label>
                       <Input
                         defaultValue=""
-                        placeholder="Username"
+                        placeholder="userId"
                         name="userId"
+                        type="text"
+                        onChange={updateState}
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col className="px-md-1" md="3">
+                    <FormGroup>
+                      <label>first Name</label>
+                      <Input
+                        defaultValue=""
+                        placeholder="firstName"
+                        name="firstName"
+                        type="text"
+                        onChange={updateState}
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col className="px-md-1" md="3">
+                    <FormGroup>
+                      <label>Last Name</label>
+                      <Input
+                        defaultValue=""
+                        placeholder="lastName"
+                        name="lastName"
                         type="text"
                         onChange={updateState}
                       />
