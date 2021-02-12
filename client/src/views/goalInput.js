@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Row, Col, Card, CardHeader, CardTitle, Button, Form, FormGroup, Label, Input, CardBody } from 'reactstrap';
 import useAxios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 
 function NewGoal(props) {
 
@@ -22,7 +23,18 @@ function NewGoal(props) {
     console.table(goalState);
     console.log('Button click ...');
 
-    useAxios.post('http//localhost:3000/api/user', { data: "DEMO OBJECT" }).then((res) => console.log(res));
+    useAxios.post('/api/goals', {
+      userUuid: uuidv4(),
+      name: "Stop Smoking",
+      goalType: "Reduce",
+      completionDate: "jan26",
+      data: [
+        {
+          value: 2,
+          date: "feb23"
+        }
+      ]
+    }).then((res) => console.log(res));
 
 
   };

@@ -37,7 +37,6 @@ ReactDOM.render(
         <Switch>
           <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
           <Route path="/splash" render={(props) => <Splash {...props} />} />
-          <Route path="/api" render={(props) => <api {...props} />} />
           <Redirect from="/" to="/splash" />
         </Switch>
       </BrowserRouter>

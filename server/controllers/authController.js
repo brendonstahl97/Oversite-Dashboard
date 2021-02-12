@@ -1,4 +1,5 @@
 const db = require("../models");
+const uuid = require("uuid");
 
 // Defining methods for the userController
 module.exports = {
@@ -25,7 +26,8 @@ module.exports = {
         'lastName': lastName,
         'userId': userId,
         'email': email,
-        'password': password
+        'password': password,
+        'uuid': uuid.v4(),
       });
 
       console.log(newUser);
