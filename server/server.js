@@ -38,7 +38,7 @@ app.use(passport.session());
 
 
 // Add routes, both API and view
-app.use('/auth', require('./routes/authRoutes'));
+// app.use('/auth', require('./routes/authRoutes'));
 app.use(routes);
 
 
