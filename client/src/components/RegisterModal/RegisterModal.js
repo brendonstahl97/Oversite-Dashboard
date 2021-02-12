@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import useAxios from "axios";
 
 // reactstrap components
@@ -9,7 +8,6 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
-  CardText,
   FormGroup,
   Form,
   Input,
@@ -18,7 +16,6 @@ import {
 } from "reactstrap";
 
 const RegisterModal = (props) => {
-  const history = useHistory();
 
   const [userState, setUserState] = useState({
     firstName: "Dingus",
