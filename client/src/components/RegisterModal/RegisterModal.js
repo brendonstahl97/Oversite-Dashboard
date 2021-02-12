@@ -21,10 +21,10 @@ const RegisterModal = (props) => {
   const history = useHistory();
 
   const [userState, setUserState] = useState({
-    firstName: "Dingus",
-    lastName: "Dangus",
+    firstName: "",
+    lastName: "",
     userId: "",
-    email: "",
+    username: "",
     password: "",
   });
 
@@ -34,7 +34,7 @@ const RegisterModal = (props) => {
     console.table(userState);
     console.log('Button click ...');
 
-    useAxios.post('/api/auth/signup', { userState }).then((res) => console.log(res));
+    useAxios.post('/api/auth/signup', userState).then((res) => console.log(res));
 
 
   };
@@ -62,7 +62,7 @@ const RegisterModal = (props) => {
                     <FormGroup>
                       <label>Username</label>
                       <Input
-                        defaultValue=""
+                        value={userState.userId}
                         placeholder="userId"
                         name="userId"
                         type="text"
@@ -74,7 +74,7 @@ const RegisterModal = (props) => {
                     <FormGroup>
                       <label>first Name</label>
                       <Input
-                        defaultValue=""
+                        value={userState.firstName}
                         placeholder="firstName"
                         name="firstName"
                         type="text"
@@ -86,7 +86,7 @@ const RegisterModal = (props) => {
                     <FormGroup>
                       <label>Last Name</label>
                       <Input
-                        defaultValue=""
+                        value={userState.lastName}
                         placeholder="lastName"
                         name="lastName"
                         type="text"
@@ -99,7 +99,12 @@ const RegisterModal = (props) => {
                       <label htmlFor="exampleInputEmail1">
                         Email address
                         </label>
-                      <Input placeholder="" name="email" type="email" onChange={updateState} />
+                      <Input
+                        placeholder=""
+                        name="username"
+                        type="email"
+                        value={userState.username}
+                        onChange={updateState} />
                     </FormGroup>
                   </Col>
                 </Row>
@@ -109,6 +114,7 @@ const RegisterModal = (props) => {
                       <label>Password</label>
                       <Input
                         placeholder=""
+                        value={userState.password}
                         name="password"
                         type="password"
                         onChange={updateState}
