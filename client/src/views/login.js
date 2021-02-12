@@ -1,40 +1,7 @@
-// import React from "react";
-// // nodejs library that concatenates classes
-// import classNames from "classnames";
-// // import { getUser, userData, handleInputChange, handleFormGroupSubmit, loggedIn, 
-    
-// //   } from "../server/controllers/authController.js";
-// // reactstrap components
-// import {
-//   Button,
-//   ButtonGroup,
-//   Card,
-//   CardHeader,
-//   CardBody,
-//   CardTitle,
-//   DropdownToggle,
-//   DropdownMenu,
-//   DropdownItem,
-//   UncontrolledDropdown,
-//   Label,
-//   Form, 
-//   FormGroup,
-//   FormGroupGroup,
-//   Input,
-//   Table,
-//   Row,
-//   Col,
-//   UncontrolledTooltip,
-// } from "reactstrap";
-
-
-
 import React from "react";
-import ReactDOM from "react-dom";
 import { Container, Row, Col, Jumbotron, Card, CardBody } from "reactstrap";
 import LoginForm from "../components/Login/Login.js";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import "../assets/css/black-dashboard-react.css";
 
 function Login (props) {
   return (
@@ -63,16 +30,16 @@ function Login (props) {
   );
 }
 
-// ReactDOM.render(<App />, document.getElementById("root"));
+export default Login
 
-
+// ** ORIGINAL CODE WITH INPUT/BUTTON ID'S AND VALUES ** 
 // function Login (props) {
 //   return (
 // <>
 // <div className="content">
 // <Row>
 // <Col md="8">
-    
+
 // <Card>
 //     <CardHeader>
 //         <CardTitle tag="h4"><legend>Login</legend></CardTitle>
@@ -103,5 +70,3 @@ function Login (props) {
 // </>
 //     );
 // };
-
-export default Login
