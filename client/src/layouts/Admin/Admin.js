@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useState } from "react";
 import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
@@ -101,6 +101,10 @@ function Admin(props) {
     }
     return "Brand";
   };
+
+  const [loggedIn, setLoggedIn] = useState(true);
+
+
   return (
     <BackgroundColorContext.Consumer>
       {({ color, changeColor }) => (
@@ -120,6 +124,7 @@ function Admin(props) {
                 brandText={getBrandText(location.pathname)}
                 toggleSidebar={toggleSidebar}
                 sidebarOpened={sidebarOpened}
+                loggedIn={loggedIn}
               />
               <Switch>
                 {getRoutes(routes)}
