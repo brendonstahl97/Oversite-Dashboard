@@ -32,9 +32,9 @@ const RegisterModal = (props) => {
     console.table(userState);
     console.log('Button click ...');
 
-    useAxios.post('http//localhost:3000/api/user', { userState }).then((res) => console.log(res));
+    useAxios.post('/api/test', { userState }).then((res) => console.log(res));
 
-    history.push('/admin/dashboard')
+
   };
 
   const updateState = (e) => {
