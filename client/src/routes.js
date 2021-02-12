@@ -24,7 +24,7 @@ import Typography from "views/Typography.js";
 import UserProfile from "views/UserProfile.js";
 import Goals from "views/Goals.js";
 import newGoal from "views/goalInput.js";
-
+import Login from "views/login.js"
 
 var routes = [
   {
@@ -82,6 +82,13 @@ var routes = [
     name: "Typography",
     icon: "tim-icons icon-align-center",
     component: Typography,
+    layout: "/admin",
+  },
+  {
+    path: "/login",
+    name: "Login",
+    icon: "tim-icons icon-key-25",
+    component: Login,
     layout: "/admin",
   },
 ];
