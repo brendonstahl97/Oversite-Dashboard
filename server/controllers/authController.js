@@ -1,4 +1,5 @@
 const db = require("../models");
+const uuid = require("uuid");
 
 // Defining methods for the userController
 module.exports = {
@@ -12,22 +13,28 @@ module.exports = {
     }
   },
   register: (req, res) => {
-    const { firstName, lastName, email, password } = req.body;
+
+    const { firstName, lastName, userId, username, password } = req.body;
+    // console.log(username);
+
     // ADD VALIDATION
     db.User.findOne({ 'email': email }, (err, userMatch) => {
       if (userMatch) {
         return res.json({
-          error: `Sorry, already a user with the username: ${username}`
+          error: `Sorry, already a user with the email: ${username}`
         });
       }
       const newUser = new db.User({
         'firstName': firstName,
         'lastName': lastName,
-        'email': email,
-        'password': password
+        'userId': userId,
+        'email': username,
+        'password': password,
+        'uuid': uuid.v4(),
+
       });
 
-      console.log(newUser);
+      // console.log(newUser);
       newUser.save((err, savedUser) => {
         if (err) return res.json(err);
         return res.json(savedUser);
@@ -43,19 +50,19 @@ module.exports = {
       return res.json({ msg: 'no user to log out!' });
     }
   },
-  auth: function(req, res, next) {
-		console.log(req.body);
-		console.log('================');
-		next();
+  auth: function (req, res, next) {
+    console.log(req.body);
+    console.log('================');
+    next();
   },
   authenticate: (req, res) => {
-		console.log('POST to /login');
-		const user = JSON.parse(JSON.stringify(req.user)); // hack
-		const cleanUser = Object.assign({}, user);
-		if (cleanUser) {
-			console.log(`Deleting ${cleanUser.password}`);
-			delete cleanUser.password;
-		}
-		res.json({ user: cleanUser });
-	}
+    console.log('POST to /login');
+    const user = JSON.parse(JSON.stringify(req.user)); // hack
+    const cleanUser = Object.assign({}, user);
+    if (cleanUser) {
+      console.log(`Deleting ${cleanUser.password}`);
+      delete cleanUser.password;
+    }
+    res.json({ user: cleanUser });
+  }
 };
