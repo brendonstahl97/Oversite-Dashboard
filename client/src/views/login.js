@@ -28,7 +28,7 @@ function Login (props) {
       </Container>
     </div>
   );
-}
+};
 
 export default Login
 
