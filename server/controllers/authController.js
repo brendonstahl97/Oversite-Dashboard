@@ -1,5 +1,5 @@
 const db = require("../models");
-const uuid = require("uuid");
+const { v4: uuidv4 } = require('uuid');
 
 // Defining methods for the userController
 module.exports = {
@@ -18,19 +18,20 @@ module.exports = {
     // console.log(username);
 
     // ADD VALIDATION
-    db.User.findOne({ 'email': email }, (err, userMatch) => {
+    db.User.findOne({ 'email': username }, (err, userMatch) => {
       if (userMatch) {
         return res.json({
           error: `Sorry, already a user with the email: ${username}`
         });
       }
+
       const newUser = new db.User({
         'firstName': firstName,
         'lastName': lastName,
         'userId': userId,
         'email': username,
         'password': password,
-        'uuid': uuid.v4(),
+        'uuid': uuidv4(),
       });
 
       // console.log(newUser);

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useAxios from "axios";
+import { useHistory } from 'react-router-dom';
 
 // reactstrap components
 import {
@@ -25,15 +26,17 @@ const RegisterModal = (props) => {
     password: "",
   });
 
+  const history = useHistory();
+
   const handleClick = (e) => {
     e.preventDefault();
 
     console.table(userState);
     console.log('Button click ...');
 
-    useAxios.post('/api/auth/signup', userState).then((res) => console.log(res));
-
-
+    useAxios.post('/api/auth/signup', userState).then(
+      history.push("/admin/dashboard")
+    );
   };
 
   const updateState = (e) => {
