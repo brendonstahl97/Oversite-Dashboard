@@ -12,17 +12,12 @@ import {
   CardHeader,
   CardBody,
   CardTitle,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
   Label,
   FormGroup,
   Input,
   Table,
   Row,
   Col,
-  UncontrolledTooltip,
 } from "reactstrap";
 
 // core components
@@ -181,62 +176,62 @@ function Dashboard(props) {
         <Row>
           <Col lg="6" md="12">
             <Card >
-            <CardHeader>
+              <CardHeader>
                 <CardTitle tag="h4">Oustanding Tasks</CardTitle>
               </CardHeader>
               <CardBody>
-                  <Table className="tablesorter" responsive>
+                <Table className="tablesorter" responsive>
                   {/* <thead className="text-primary">
                     <tr>
                       <th>Task Name</th>
                       <th className="text-right">Due Date</th>
                     </tr>
                   </thead> */}
-                    <tbody>
-                      <tr>
-                        <td>
-                          <FormGroup check>
-                            <Label check>
-                              <Input defaultValue="" type="checkbox" />
-                              <span className="form-check-sign">
-                                <span className="check" />
-                              </span>
-                            </Label>
-                          </FormGroup>
-                        </td>
-                        <td>Do 25 push ups every day</td>
-                        <td className="text-center">2/10/21</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <FormGroup check>
-                            <Label check>
-                              <Input defaultValue="" type="checkbox" />
-                              <span className="form-check-sign">
-                                <span className="check" />
-                              </span>
-                            </Label>
-                          </FormGroup>
-                        </td>
-                        <td>Eat less McDonalds every week</td>
-                        <td className="text-center">2/10/21</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <FormGroup check>
-                            <Label check>
-                              <Input defaultValue="" type="checkbox" />
-                              <span className="form-check-sign">
-                                <span className="check" />
-                              </span>
-                            </Label>
-                          </FormGroup>
-                        </td>
-                        <td>Stop smoking by April</td>
-                        <td className="text-center">2/10/21</td>
-                      </tr>
-                    </tbody>
-                  </Table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <FormGroup check>
+                          <Label check>
+                            <Input defaultValue="" type="checkbox" />
+                            <span className="form-check-sign">
+                              <span className="check" />
+                            </span>
+                          </Label>
+                        </FormGroup>
+                      </td>
+                      <td>Do 25 push ups every day</td>
+                      <td className="text-center">2/10/21</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <FormGroup check>
+                          <Label check>
+                            <Input defaultValue="" type="checkbox" />
+                            <span className="form-check-sign">
+                              <span className="check" />
+                            </span>
+                          </Label>
+                        </FormGroup>
+                      </td>
+                      <td>Eat less McDonalds every week</td>
+                      <td className="text-center">2/10/21</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <FormGroup check>
+                          <Label check>
+                            <Input defaultValue="" type="checkbox" />
+                            <span className="form-check-sign">
+                              <span className="check" />
+                            </span>
+                          </Label>
+                        </FormGroup>
+                      </td>
+                      <td>Stop smoking by April</td>
+                      <td className="text-center">2/10/21</td>
+                    </tr>
+                  </tbody>
+                </Table>
               </CardBody>
             </Card>
           </Col>
@@ -266,7 +261,7 @@ function Dashboard(props) {
                       <td>Quit Smoking</td>
                       <td className="text-center">2/10/21</td>
                     </tr>
-                    
+
                   </tbody>
                 </Table>
               </CardBody>

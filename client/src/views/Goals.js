@@ -1,22 +1,21 @@
 import React from 'react';
-import { Row, Col, Card, CardHeader, CardTitle, CardBody, Table} from "reactstrap";
-import { createShorthandPropertyAssignment } from 'typescript';
+import { Row, Col, Card, CardHeader, CardTitle, CardBody, Table } from "reactstrap";
+
 import {
-    chartExample1, // in src/views/Dashboard.js
-    chartExample2, // in src/views/Dashboard.js
-    chartExample3, // in src/views/Dashboard.js
-    chartExample4, // in src/views/Dashboard.js
-  } from "../variables/charts";
-  import { Line, Bar } from "react-chartjs-2";
+
+  chartExample2, // in src/views/Dashboard.js
+
+} from "../variables/charts";
+import { Line } from "react-chartjs-2";
 
 
 const Goals = (props) => {
 
-    return (
-<>
-<div className="content">
-    <Row>
-        <Col>
+  return (
+    <>
+      <div className="content">
+        <Row>
+          <Col>
             <Card className="card-chart">
               <CardHeader>
                 <h5 className="card-category">Total Goals</h5>
@@ -33,11 +32,11 @@ const Goals = (props) => {
                 </div>
               </CardBody>
             </Card>
-        </Col>
-    </Row>
+          </Col>
+        </Row>
 
-    <Row>
-    <Col>
+        <Row>
+          <Col>
             <Card>
               <CardHeader>
                 <CardTitle tag="h4">Goals List</CardTitle>
@@ -53,7 +52,7 @@ const Goals = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                      {/* <tr>
+                    {/* <tr>
                           <td></td>
                       </tr> */}
                     <tr>
@@ -91,10 +90,10 @@ const Goals = (props) => {
               </CardBody>
             </Card>
           </Col>
-    </Row>
-</div>
-</>
-    );
+        </Row>
+      </div>
+    </>
+  );
 };
 
 export default Goals;

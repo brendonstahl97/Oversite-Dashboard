@@ -38,6 +38,7 @@ import {
   NavbarToggler,
   ModalHeader,
 } from "reactstrap";
+import Axios from "axios";
 
 function AdminNavbar(props) {
   const [collapseOpen, setcollapseOpen] = React.useState(false);
@@ -70,6 +71,15 @@ function AdminNavbar(props) {
   // this function is to open the Search modal
   const toggleModalSearch = () => {
     setmodalSearch(!modalSearch);
+  };
+
+  const handleLogOut = () => {
+    if (props.loggedIn) {
+      Axios.post("/auth/logout")
+        .catch(
+          err => console.error(err)
+        );
+    }
   };
   return (
     <>
@@ -123,7 +133,7 @@ function AdminNavbar(props) {
                   </NavLink>
                   <DropdownItem divider tag="li" />
                   <NavLink tag="li">
-                    <DropdownItem className="nav-item">Log out</DropdownItem>
+                    <DropdownItem className="nav-item" onClick={handleLogOut}>Log out</DropdownItem>
                   </NavLink>
                 </DropdownMenu>
               </UncontrolledDropdown>
