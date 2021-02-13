@@ -8,7 +8,8 @@ const userSchema = new Schema({
   lastName: { type: String, unique: false },
   userId: { type: String, unique: true, required: true },
   email: { type: String, unique: true, required: true },
-  password: { type: String, unique: false, required: true }
+  password: { type: String, unique: false, required: true },
+  uuid: { type: String, unique: true, required: true }
 });
 
 // Define schema methods

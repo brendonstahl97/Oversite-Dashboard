@@ -14,7 +14,7 @@ module.exports = {
   },
   register: (req, res) => {
 
-    const { firstName, lastName, userId, username, password } = req.body;
+    const { firstName, lastName, userId, username, password, uuid } = req.body;
     // console.log(username);
 
     // ADD VALIDATION
@@ -31,7 +31,6 @@ module.exports = {
         'email': username,
         'password': password,
         'uuid': uuid.v4(),
-
       });
 
       // console.log(newUser);
