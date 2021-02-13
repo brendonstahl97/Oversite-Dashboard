@@ -66,7 +66,7 @@ const LoginForm = props => {
           }
         }}
       />
-      <Button id="submit">Submit</Button>
+      <Button id="submit" id="submit" className="btn-fill" color="primary" type="submit">Submit</Button>
     </AvForm>
   );
 };
