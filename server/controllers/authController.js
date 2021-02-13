@@ -13,10 +13,12 @@ module.exports = {
     }
   },
   register: (req, res) => {
+
     const { firstName, lastName, userId, username, password } = req.body;
     // console.log(username);
+
     // ADD VALIDATION
-    db.User.findOne({ 'email': username }, (err, userMatch) => {
+    db.User.findOne({ 'email': email }, (err, userMatch) => {
       if (userMatch) {
         return res.json({
           error: `Sorry, already a user with the email: ${username}`
@@ -29,6 +31,7 @@ module.exports = {
         'email': username,
         'password': password,
         'uuid': uuid.v4(),
+
       });
 
       // console.log(newUser);
