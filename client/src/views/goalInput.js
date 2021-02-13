@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Row, Col, Card, CardHeader, CardTitle, Button, Form, FormGroup, Label, Input, CardBody } from 'reactstrap';
 import useAxios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+import GoalUpdate from "../components/GoalUpdate/GoalUpdate.js"
 
 function NewGoal(props) {
 
@@ -140,6 +141,9 @@ function NewGoal(props) {
             </CardBody>
 
           </Card>
+
+          <GoalUpdate />
+
         </Col>
 
       </Row>

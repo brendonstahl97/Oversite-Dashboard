@@ -29,5 +29,12 @@ module.exports = {
             if (err) return res.json(err);
             return res.json(savedGoal);
         });
+    },
+
+    //add a Daily update to our goal Data.
+    addData: (req, res) => {
+        const { data } = req.body;
+        console.log(data);
+        return res;
     }
 };
