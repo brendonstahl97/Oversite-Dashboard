@@ -6,6 +6,7 @@ const goalController = require("../controllers/goalController");
 
 router.use("/api/auth", authRoutes);
 router.post("/api/goals", goalController.create);
+router.post("/api/goals/update", goalController.addData);
 
 
 // If no API routes are hit, send the React app
