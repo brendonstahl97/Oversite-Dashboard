@@ -1,5 +1,5 @@
 const db = require("../models");
-const uuid = require("uuid");
+const { v4: uuidv4 } = require('uuid');
 
 // Defining methods for the userController
 module.exports = {
@@ -14,7 +14,7 @@ module.exports = {
   },
   register: (req, res) => {
 
-    const { firstName, lastName, userId, username, password } = req.body;
+    const { firstName, lastName, userId, username, password, uuid } = req.body;
     // console.log(username);
 
     // ADD VALIDATION
@@ -24,14 +24,14 @@ module.exports = {
           error: `Sorry, already a user with the email: ${username}`
         });
       }
+
       const newUser = new db.User({
         'firstName': firstName,
         'lastName': lastName,
         'userId': userId,
         'email': username,
         'password': password,
-        'uuid': uuid.v4(),
-
+        'uuid': uuidv4(),
       });
 
       // console.log(newUser);
