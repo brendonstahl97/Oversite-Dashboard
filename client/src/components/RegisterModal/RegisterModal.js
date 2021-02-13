@@ -131,7 +131,13 @@ const RegisterModal = (props) => {
                 Submit
                 </Button>
             </CardFooter>
-          </Card>
+            </Card>
+            <Col md="6">
+              <Row>
+                <h4>Already have an account?</h4>
+                <Button className="btn float-left">Login</Button>
+            </Row>
+              </Col>
           </Jumbotron>
         </Col>
       </Row>
