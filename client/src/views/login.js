@@ -11,8 +11,8 @@ function Login (props) {
           <Col />
           <Col lg="8">
             <Jumbotron >
-              <h3>
-                <u>Login</u>
+              <h3 classname="title">
+                Login
               </h3>
               <hr />
               <Card>
@@ -28,7 +28,7 @@ function Login (props) {
       </Container>
     </div>
   );
-}
+};
 
 export default Login
 

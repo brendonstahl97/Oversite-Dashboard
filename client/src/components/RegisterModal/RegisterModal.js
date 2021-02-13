@@ -14,6 +14,8 @@ import {
   Input,
   Row,
   Col,
+  Jumbotron,
+  Container
 } from "reactstrap";
 
 const RegisterModal = (props) => {
@@ -49,16 +51,18 @@ const RegisterModal = (props) => {
 
   return (
     <>
+    <div class="content">
+      <Container>
       <Row>
-        <Col md="8">
+        <Col lg="8">
+          <Jumbotron>
+              <h3 className="title">Signup</h3>
+              <hr />
           <Card>
-            <CardHeader>
-              <h5 className="title">Signup</h5>
-            </CardHeader>
             <CardBody>
               <Form>
                 <Row>
-                  <Col className="px-md-1" md="3">
+                  <Col className="" md="4">
                     <FormGroup>
                       <label>Username</label>
                       <Input
@@ -70,9 +74,9 @@ const RegisterModal = (props) => {
                       />
                     </FormGroup>
                   </Col>
-                  <Col className="px-md-1" md="3">
+                  <Col className="" md="4">
                     <FormGroup>
-                      <label>first Name</label>
+                      <label>First Name</label>
                       <Input
                         value={userState.firstName}
                         placeholder="firstName"
@@ -82,7 +86,7 @@ const RegisterModal = (props) => {
                       />
                     </FormGroup>
                   </Col>
-                  <Col className="px-md-1" md="3">
+                  <Col className="" md="4">
                     <FormGroup>
                       <label>Last Name</label>
                       <Input
@@ -94,7 +98,7 @@ const RegisterModal = (props) => {
                       />
                     </FormGroup>
                   </Col>
-                  <Col className="pl-md-1" md="4">
+                  <Col className="" md="6">
                     <FormGroup>
                       <label htmlFor="exampleInputEmail1">
                         Email address
@@ -107,9 +111,7 @@ const RegisterModal = (props) => {
                         onChange={updateState} />
                     </FormGroup>
                   </Col>
-                </Row>
-                <Row>
-                  <Col className="pr-md-1" md="6">
+                  <Col className="" md="6">
                     <FormGroup>
                       <label>Password</label>
                       <Input
@@ -130,8 +132,11 @@ const RegisterModal = (props) => {
                 </Button>
             </CardFooter>
           </Card>
+          </Jumbotron>
         </Col>
       </Row>
+      </Container>
+      </div>
     </>
   );
 }
