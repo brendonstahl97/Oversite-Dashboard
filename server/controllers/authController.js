@@ -18,7 +18,7 @@ module.exports = {
     // console.log(username);
 
     // ADD VALIDATION
-    db.User.findOne({ 'email': email }, (err, userMatch) => {
+    db.User.findOne({ 'email': username }, (err, userMatch) => {
       if (userMatch) {
         return res.json({
           error: `Sorry, already a user with the email: ${username}`
