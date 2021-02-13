@@ -57,7 +57,8 @@ export default class LoginForm extends React.Component {
             }
           }}
         />
-        <Button id="submit">Submit</Button>
+
+        <Button id="submit" className="btn-fill" color="primary" type="submit">Submit</Button>
       </AvForm>
     );
   }
