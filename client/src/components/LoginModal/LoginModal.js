@@ -23,7 +23,7 @@ const RegisterModal = (props) => {
 
 
   const [userState, setUserState] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
@@ -32,10 +32,10 @@ const RegisterModal = (props) => {
   const handleClick = (e) => {
     e.preventDefault();
 
-    console.table(userState);
     console.log('Button click ...');
 
-    useAxios.post('/api/auth/login', userState);
+    useAxios.post('/api/auth/login', userState)
+      .then(history.push("/admin/dashboard"));
   };
 
   const updateState = (e) => {
@@ -66,7 +66,7 @@ const RegisterModal = (props) => {
                         </label>
                             <Input
                               placeholder=""
-                              name="username"
+                              name="email"
                               type="email"
                               value={userState.username}
                               onChange={updateState} />

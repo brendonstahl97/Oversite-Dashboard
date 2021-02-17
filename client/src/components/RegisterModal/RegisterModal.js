@@ -30,20 +30,17 @@ const RegisterModal = (props) => {
     lastName: "",
     userId: "",
     username: "",
-    password: "",
+    password: ""
   });
 
   const history = useHistory();
 
   const handleClick = (e) => {
     e.preventDefault();
-
-    console.table(userState);
     console.log('Button click ...');
 
-    useAxios.post('/api/auth/signup', userState).then(
-      history.push("/admin/dashboard")
-    );
+    useAxios.post('/api/auth/signup', userState)
+      .then(history.push("/splash/login"));
   };
 
   const updateState = (e) => {
