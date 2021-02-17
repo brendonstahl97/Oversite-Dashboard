@@ -4,14 +4,11 @@ const Schema = mongoose.Schema;
 const goalSchema = new Schema({
     userUuid: String,
     name: { type: String, required: true },
-    goalType: String,
     completionDate: String,
-    data: [
-        {
-            value: Number,
-            date: String
-        }
-    ]
+    description: String,
+    goalType: String,
+    consequence: String,
+    data: []
 }
 );
 
