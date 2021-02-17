@@ -88,7 +88,7 @@ const RegisterModal = (props) => {
               </Form>
             </CardBody>
             <CardFooter>
-              <Button className="btn-fill" color="primary" type="submit" onClick={handleClick}>
+              <Button className="btn-fill" color='success' type="submit" onClick={handleClick}>
                 Submit
                 </Button>
             </CardFooter>
@@ -96,7 +96,7 @@ const RegisterModal = (props) => {
             <Col md="6">
               <Row>
                 <h4>Don't have an account?</h4>
-                <Button className="btn float-left" onClick={() => history.push("/splash/register")}>Register</Button>
+                <Button className="btn float-left" color='success' onClick={() => history.push("/splash/register")}>Register</Button>
             </Row>
               </Col>
           </Jumbotron>
