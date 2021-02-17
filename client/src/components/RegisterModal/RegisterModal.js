@@ -58,7 +58,7 @@ const RegisterModal = (props) => {
     <div className="content">
       <Container>
         <Row>
-          <Col lg="8">
+          <Col lg="10">
             <Jumbotron>
               <h3 className="title">Signup</h3>
               <hr />
@@ -139,6 +139,8 @@ const RegisterModal = (props) => {
               <Col md="6">
                 <Row>
                   <h4>Already have an account?</h4>
+                </Row>
+                <Row>
                   <Button className="btn float-left" onClick={() => history.push("/splash/login")}>Login</Button>
                 </Row>
               </Col>

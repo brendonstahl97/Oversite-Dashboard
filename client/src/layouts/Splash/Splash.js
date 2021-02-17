@@ -19,9 +19,10 @@ const Splash = (props) => {
         <React.Fragment>
           <div className="wrapper">
             <div className="main-panel" ref={mainPanelRef} data={color}>
+              <div className="content">
               <Container>
                 <Row>
-                  <Col lg="8">
+                  <Col lg="10">
                     <div className="content">
                       <h1 className="d-flex justify-content-center"><u>OVERSITE</u></h1>
                       <h2 className="d-flex justify-content-center">The personal goal tracker, with a catch</h2>
@@ -41,13 +42,14 @@ const Splash = (props) => {
                   <Redirect from="*" to="/splash/register" />
                 </Switch>
                 <Row>
-                  <Col lg="8">
+                  <Col lg="10">
                     <div className="content">
                       <h2 className="d-flex justify-content-center">Meet your goals, or we'll tell your Mom</h2>
                     </div>
                   </Col>
                 </Row>
               </Container>
+              </div>
             </div>
           </div>
         </React.Fragment>
