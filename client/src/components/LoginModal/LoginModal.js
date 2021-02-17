@@ -51,6 +51,14 @@ const RegisterModal = (props) => {
     <div class="content">
       <Container>
       <Row>
+        <Col lg="8"> 
+          <div className="content">
+          <h1 className="d-flex justify-content-center"><u>OVERSITE</u></h1>
+          <h2 className="d-flex justify-content-center">Welcome back, and good luck!</h2>
+          </div>
+        </Col>
+      </Row>
+      <Row>
         <Col lg="8">
           <Jumbotron>
               <h3 className="title">Login</h3>
