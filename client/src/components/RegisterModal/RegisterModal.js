@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useAxios from "axios";
 import { useHistory } from 'react-router-dom';
+// import logo from './public/react-logo.png';
 
 // reactstrap components
 import {
@@ -51,8 +52,17 @@ const RegisterModal = (props) => {
 
   return (
     <>
-    <div class="content">
+    <div className="content">
       <Container>
+      <Row>
+        <Col lg="8"> 
+          <div className="content">
+          <h1 className="d-flex justify-content-center"><u>OVERSITE</u></h1>
+          <h2 className="d-flex justify-content-center">The personal goal tracker, with a catch</h2>
+          </div>
+        </Col>
+      </Row>
+      
       <Row>
         <Col lg="8">
           <Jumbotron>
@@ -141,6 +151,15 @@ const RegisterModal = (props) => {
           </Jumbotron>
         </Col>
       </Row>
+      
+      <Row>
+        <Col lg="8"> 
+          <div className="content">
+          <h2 className="d-flex justify-content-center">Meet your goals, or we'll tell your Mom</h2>
+          </div>
+        </Col>
+      </Row>
+
       </Container>
       </div>
     </>
