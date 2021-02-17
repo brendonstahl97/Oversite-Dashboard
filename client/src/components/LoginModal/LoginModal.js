@@ -23,7 +23,7 @@ const RegisterModal = (props) => {
 
 
   const [userState, setUserState] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
@@ -32,10 +32,10 @@ const RegisterModal = (props) => {
   const handleClick = (e) => {
     e.preventDefault();
 
-    console.table(userState);
     console.log('Button click ...');
 
-    useAxios.post('/api/auth/login', userState);
+    useAxios.post('/api/auth/login', userState)
+      .then(history.push("/admin/dashboard"));
   };
 
   const updateState = (e) => {
@@ -48,63 +48,63 @@ const RegisterModal = (props) => {
 
   return (
     <>
-    <div class="content">
-      <Container>
-      <Row>
-        <Col lg="10">
-          <Jumbotron>
-              <h3 className="title">Login</h3>
-              <hr />
-          <Card>
-            <CardBody>
-              <Form>
-                <Row>
-                  <Col className="" md="6">
-                    <FormGroup>
-                      <label htmlFor="exampleInputEmail1">
-                        Email address
+      <div class="content">
+        <Container>
+          <Row>
+            <Col lg="10">
+              <Jumbotron>
+                <h3 className="title">Login</h3>
+                <hr />
+                <Card>
+                  <CardBody>
+                    <Form>
+                      <Row>
+                        <Col className="" md="6">
+                          <FormGroup>
+                            <label htmlFor="exampleInputEmail1">
+                              Email address
                         </label>
-                      <Input
-                        placeholder=""
-                        name="username"
-                        type="email"
-                        value={userState.username}
-                        onChange={updateState} />
-                    </FormGroup>
-                  </Col>
-                  <Col className="" md="6">
-                    <FormGroup>
-                      <label>Password</label>
-                      <Input
-                        placeholder=""
-                        value={userState.password}
-                        name="password"
-                        type="password"
-                        onChange={updateState}
-                      />
-                    </FormGroup>
-                  </Col>
-                </Row>
-              </Form>
-            </CardBody>
-            <CardFooter>
-              <Button className="btn-fill" color="primary" type="submit" onClick={handleClick}>
-                Submit
+                            <Input
+                              placeholder=""
+                              name="email"
+                              type="email"
+                              value={userState.username}
+                              onChange={updateState} />
+                          </FormGroup>
+                        </Col>
+                        <Col className="" md="6">
+                          <FormGroup>
+                            <label>Password</label>
+                            <Input
+                              placeholder=""
+                              value={userState.password}
+                              name="password"
+                              type="password"
+                              onChange={updateState}
+                            />
+                          </FormGroup>
+                        </Col>
+                      </Row>
+                    </Form>
+                  </CardBody>
+                  <CardFooter>
+                    <Button className="btn-fill" color='success' type="submit" onClick={handleClick}>
+                      Submit
                 </Button>
-            </CardFooter>
-            </Card>
-            <Col md="6">
-              <Row>
-                <h4>Don't have an account?</h4>
-              </Row>
-              <Row>
-                <Button className="btn float-left" onClick={() => history.push("/splash/register")}>Register</Button>
-            </Row>
-              </Col>
-          </Jumbotron>
-        </Col>
-      </Row>
-      </Container>
+                  </CardFooter>
+                </Card>
+                <Col md="6">
+                  <Row>
+                    <h4>Don't have an account?</h4>
+                  </Row>
+                  <Row>
+                    <Button className="btn float-left" color='success' onClick={() => history.push("/splash/register")}>Register</Button>
+                  </Row>
+                </Col>
+              </Jumbotron>
+            </Col>
+          </Row>
+        </Container>
       </div>
     </>
   );

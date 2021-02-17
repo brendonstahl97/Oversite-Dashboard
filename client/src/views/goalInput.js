@@ -15,8 +15,8 @@ function NewGoal(props) {
     goal: "",
     completionDate: "",
     description: "",
-    habit: undefined,
-    consequences: [],
+    goalType: "",
+    consequence: "",
   });
 
   const handleClick = (e) => {
