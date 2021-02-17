@@ -13,11 +13,17 @@ function NewGoal(props) {
   //Potentially refactor to change component where state lives.  Add Context.
 
   const [goalState, setGoalState] = useState({
-    goal: "",
+    goalName: "",
+    unitType: "",
+    goalType: undefined,
+    targetType: undefined,
+    target: undefined,
+    avgPeriod: "",
     completionDate: "",
-    description: "",
-    habit: undefined,
-    consequences: [],
+    consequenceTargetContact: "",
+    successMessage: "",
+    failureMessage: "",
+    goalLog: []
   });
 
   const handleClick = (e) => {
@@ -25,18 +31,7 @@ function NewGoal(props) {
     console.table(goalState);
     console.log('Button click ...');
 
-    useAxios.post('/api/goals', {
-      userUuid: uuidv4(),
-      name: "Stop Smoking",
-      goalType: "Reduce",
-      completionDate: "jan26",
-      data: [
-        {
-          value: 2,
-          date: "feb23"
-        }
-      ]
-    }).then((res) => console.log(res));
+    useAxios.post('/api/goals', { goalState }).then((res) => console.log(res));
 
 
   };
@@ -62,82 +57,89 @@ function NewGoal(props) {
             <CardBody>
               <Form>
                 <FormGroup>
-                  <Label for="exampleEmail">Goal Name</Label>
+                  <Label for="goalNameInput">Goal Name</Label>
                   <Input
                     type="text"
-                    name="goal"
-                    id="newGoal"
+                    name="goalName"
                     placeholder="Be more awesome"
                     onChange={updateState}
                   />
                 </FormGroup>
-                <FormGroup>
-                  <Label for="exampleDate">Completion Date</Label>
-                  <Input
-                    type="date"
-                    name="date"
-                    id="completionDate"
-                    placeholder="date placeholder"
-                    onChange={updateState}
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <Label for="exampleText">Desciption</Label>
-                  <Input
-                    type="textarea"
-                    name="description"
-                    id="description"
-                    onChange={updateState}
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <Label for="exampleSelect">Select</Label>
-                  <Input type="select" name="habit" id="habitSelect" onChange={updateState}>
-                    <option id="reduce">Reduce</option>
-                    <option id="increase">Increase</option>
-                    <option id="repeat">Repeat</option>
-                  </Input>
-                </FormGroup>
-                {/* <FormGroup>
-        <Label for="exampleSelectMulti">Select Multiple</Label>
-        <Input type="select" name="selectMulti" id="exampleSelectMulti" multiple>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </Input>
-      </FormGroup> */}
+                <Form inline>
+                  <FormGroup>
+                    <h4>
+                      I want my
+                    <Col xs="auto">
+                        <Input type="text" name="unitType" id="unitTypeInput" placeholder="Number of Cigarettes" onChange={updateState} />
+                      </Col>
+                      <Col xs="auto">
+                        <Label for="targetTypeSelect">On average or as a total</Label>
+                        <Input type="select" name="targetType" id="targetTypeSelect" onChange={updateState}>
+                          <option id="average">Average</option>
+                          <option id="total">Total</option>
+                        </Input>
+                      </Col>
+                    Per
+                    <Col xs="auto">
+                        <Label for="averageTypeSelect">Average Period</Label>
+                        <Input type="select" name="avgPeriod" id="averageTypeSelect" onChange={updateState}>
+                          <option id="day">Day</option>
+                          <option id="week">Week</option>
+                          <option id="week">Month</option>
+                        </Input>
+                      </Col>
+                    To
+                    <Col xs="auto">
+                        <Label for="goalTypeSelect">Select</Label>
+                        <Input type="select" name="goalType" id="goalTypeSelect" onChange={updateState}>
+                          <option id="reduce">Reduce</option>
+                          <option id="increase">Increase</option>
+                          <option id="repeat">Repeat</option>
+                        </Input>
+                      </Col>
+                    To
+                    <Col xs="auto">
+                        <Label for="goalTypeSelection">Select</Label>
+                        <Input type="text" name="target" id="targetInput" placeholder="1" onChange={updateState} />
+                      </Col>
+                    By
+                    <Col xs="auto">
+                        <Label for="dateInput">Completion Date</Label>
+                        <Input
+                          type="date"
+                          name="completionDate"
+                          placeholder="date placeholder"
+                          onChange={updateState}
+                        />
+                      </Col>
+                    </h4>
+                  </FormGroup>
+                </Form>
                 <FormGroup tag="fieldset">
                   <legend>Consequence</legend>
                   <FormGroup check>
                     <Label check>
                       <Input type="radio" name="consequence1" id="consequence1" />{' '}
-            Message someone if I succeed
-          </Label>
+                            Message someone if I succeed
+                        </Label>
                     <Input type="text" name="phoneNumber1" id="phoneNumber1" placeholder="123-456-7890" />
                   </FormGroup>
                   <FormGroup check>
                     <Label check>
                       <Input type="radio" name="consequence2" id="consequence2" />{' '}
-            Message someone if I fail
-          </Label>
+                          Message someone if I fail
+                        </Label>
                     <Input type="text" name="phoneNumber2" id="phoneNumber2" placeholder="123-456-7890" />
                   </FormGroup>
                   <FormGroup check>
                     <Label check>
                       <Input type="radio" name="noConsequence" id="noConsequence" />{' '}
-            No Consequence
-          </Label>
+                           No Consequence
+                        </Label>
                   </FormGroup>
                 </FormGroup>
-                {/* <FormGroup check>
-        <Label check>
-          <Input type="checkbox" />{' '}
-          Check me out
-        </Label>
-      </FormGroup> */}
                 <Button onClick={handleClick}> Submit</Button>
+
               </Form>
             </CardBody>
 
