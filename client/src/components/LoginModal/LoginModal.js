@@ -18,12 +18,11 @@ import {
   Container
 } from "reactstrap";
 
+
 const RegisterModal = (props) => {
 
+
   const [userState, setUserState] = useState({
-    firstName: "",
-    lastName: "",
-    userId: "",
     username: "",
     password: "",
   });
@@ -36,9 +35,7 @@ const RegisterModal = (props) => {
     console.table(userState);
     console.log('Button click ...');
 
-    useAxios.post('/api/auth/signup', userState).then(
-      history.push("/admin/dashboard")
-    );
+    useAxios.post('/api/auth/login', userState);
   };
 
   const updateState = (e) => {
@@ -56,48 +53,12 @@ const RegisterModal = (props) => {
       <Row>
         <Col lg="8">
           <Jumbotron>
-              <h3 className="title">Signup</h3>
+              <h3 className="title">Login</h3>
               <hr />
           <Card>
             <CardBody>
               <Form>
                 <Row>
-                  <Col className="" md="4">
-                    <FormGroup>
-                      <label>Username</label>
-                      <Input
-                        value={userState.userId}
-                        placeholder="userId"
-                        name="userId"
-                        type="text"
-                        onChange={updateState}
-                      />
-                    </FormGroup>
-                  </Col>
-                  <Col className="" md="4">
-                    <FormGroup>
-                      <label>First Name</label>
-                      <Input
-                        value={userState.firstName}
-                        placeholder="firstName"
-                        name="firstName"
-                        type="text"
-                        onChange={updateState}
-                      />
-                    </FormGroup>
-                  </Col>
-                  <Col className="" md="4">
-                    <FormGroup>
-                      <label>Last Name</label>
-                      <Input
-                        value={userState.lastName}
-                        placeholder="lastName"
-                        name="lastName"
-                        type="text"
-                        onChange={updateState}
-                      />
-                    </FormGroup>
-                  </Col>
                   <Col className="" md="6">
                     <FormGroup>
                       <label htmlFor="exampleInputEmail1">
@@ -134,8 +95,8 @@ const RegisterModal = (props) => {
             </Card>
             <Col md="6">
               <Row>
-                <h4>Already have an account?</h4>
-                <Button className="btn float-left" onClick={() => history.push("/splash/login")}>Login</Button>
+                <h4>Don't have an account?</h4>
+                <Button className="btn float-left" onClick={() => history.push("/splash/register")}>Register</Button>
             </Row>
               </Col>
           </Jumbotron>
