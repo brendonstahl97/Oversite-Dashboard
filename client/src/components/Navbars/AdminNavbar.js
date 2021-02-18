@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useEffect, useState } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 
@@ -38,19 +38,37 @@ import {
   NavbarToggler,
   ModalHeader,
 } from "reactstrap";
-import Axios from "axios";
+import axios from "axios";
 
 function AdminNavbar(props) {
-  const [collapseOpen, setcollapseOpen] = React.useState(false);
-  const [modalSearch, setmodalSearch] = React.useState(false);
-  const [color, setcolor] = React.useState("navbar-transparent");
-  React.useEffect(() => {
+  const [collapseOpen, setcollapseOpen] = useState(false);
+  const [modalSearch, setmodalSearch] = useState(false);
+  const [color, setcolor] = useState("navbar-transparent");
+  const [userData, setUserData] = useState({
+    firstName: "",
+    lastName: ""
+  });
+  useEffect(() => {
+
+    //populate userData
+    axios.get("/api/auth/user")
+      .then(res => {
+        // console.log(res.data.user);
+        const { firstName, lastName } = res.data.user;
+        console.log(firstName, " ", lastName);
+        setUserData({
+          firstName: firstName,
+          lastName: lastName
+        });
+      });
+
     window.addEventListener("resize", updateColor);
+
     // Specify how to clean up after this effect:
     return function cleanup() {
       window.removeEventListener("resize", updateColor);
     };
-  });
+  }, []);
   // function that adds color white/transparent to the navbar on resize (this is for the collapse)
   const updateColor = () => {
     if (window.innerWidth < 993 && collapseOpen) {
@@ -75,7 +93,7 @@ function AdminNavbar(props) {
 
   const handleLogOut = () => {
     if (props.loggedIn) {
-      Axios.post("/auth/logout")
+      axios.post("/auth/logout")
         .catch(
           err => console.error(err)
         );
@@ -108,6 +126,7 @@ function AdminNavbar(props) {
           </NavbarToggler>
           <Collapse navbar isOpen={collapseOpen}>
             <Nav className="ml-auto" navbar>
+              <h2>Hello, {userData.firstName} {userData.lastName}</h2>
               <UncontrolledDropdown nav>
                 <DropdownToggle
                   caret
