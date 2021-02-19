@@ -3,10 +3,14 @@ import { Row, Col, Card, CardHeader, CardTitle, Button, Form, Label, Input, Card
 import useAxios from 'axios';
 
 const GoalUpdate = (props) => {
+    var today = new Date();
+
+    console.log(today.toLocaleDateString("en-US"));
 
     const [goalState, setGoalState] = useState({
         userUuid: "",
         name: "",
+        goalValue: "",
         goalType: "",
         completionDate: "",
         data: [],
@@ -19,10 +23,8 @@ const GoalUpdate = (props) => {
 
         useAxios.post('/api/goals/update', {
             data: [
-                {
-                    value: "1",
-                    date: "feb23"
-                }
+                goalState,
+                today.toLocaleDateString("en-US")
             ]
         }).then((res) => console.log(res));
     };
@@ -44,11 +46,8 @@ const GoalUpdate = (props) => {
                         </CardHeader>
                         <CardBody>
                             <Form>
-                                <Label for="exampleSelect">Did you finish your goal today???</Label>
-                                <Input type="select" name="completed" id="completeSelect" onChange={updateState}>
-                                    <option id="yes">Yes</option>
-                                    <option id="no">No</option>
-                                </Input>
+                                <Label for="goalValueInput">How many units did you accomplish for today's goal?</Label>
+                                <Input type="number" name="goalValue" id="goalValueInput" onChange={updateState} />
                                 <Button onClick={handleClick}> Submit</Button>
                             </Form>
                         </CardBody>
