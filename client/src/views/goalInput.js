@@ -32,8 +32,6 @@ function NewGoal(props) {
 
     useAxios.post('/api/goals', { goalState }).then((res) =>
       console.log(res));
-
-
   };
 
   const updateState = (e) => {
