@@ -12,7 +12,12 @@ function NewGoal(props) {
   //Potentially refactor to change component where state lives.  Add Context.
 
   const [goalState, setGoalState] = useState({
-    goal: "",
+    goalName: "",
+    unitType: "",
+    goalType: "",
+    targetType: "",
+    target: "",
+    avgPeriod: "",
     completionDate: "",
     description: "",
     habit: undefined,
@@ -24,20 +29,8 @@ function NewGoal(props) {
     console.table(goalState);
     console.log('Button click ...');
 
-    useAxios.post('/api/goals', {
-      userUuid: uuidv4(),
-      name: "Stop Smoking",
-      goalType: "Reduce",
-      completionDate: "jan26",
-      data: [
-        {
-          value: 2,
-          date: "feb23"
-        }
-      ]
-    }).then((res) => console.log(res));
-
-
+    useAxios.post('/api/goals', goalState).then((res) =>
+      console.log(res));
   };
 
   const updateState = (e) => {
