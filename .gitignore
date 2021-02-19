@@ -9,4 +9,3 @@ client/build
 .eslintcache
 node_modules
 .DS_Store
-/client/src/views/goalInput.js
