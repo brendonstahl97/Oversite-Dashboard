@@ -7,7 +7,7 @@ const goalSchema = new Schema({
     description: { type: String, required: true },
     goalType: { type: String, required: true },
     targetType: { type: String, required: true },
-    target: { type: String, required: true },
+    target: { type: Number, required: true },
     avgPeriod:{ type: String, required: true },
     completionDate: { type: String, required: true },
     consequenceTargetContact: { type: String, required: true },
