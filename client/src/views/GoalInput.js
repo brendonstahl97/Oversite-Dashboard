@@ -3,7 +3,6 @@ import { Row, Col, Card, CardHeader, CardTitle, Button, Form, FormGroup, Label, 
 import useAxios from 'axios';
 import GoalUpdate from "../components/GoalUpdate/GoalUpdate.js"
 
-
 function NewGoal(props) {
 
   //TODO:  
@@ -23,6 +22,7 @@ function NewGoal(props) {
     successMessage: "",
     failureMessage: "",
     goalLog: []
+
   });
 
   const handleClick = (e) => {

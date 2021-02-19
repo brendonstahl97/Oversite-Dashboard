@@ -34,7 +34,7 @@ module.exports = {
         'uuid': uuidv4(),
       });
 
-      // console.log(newUser);
+      // console.log(newUser.uuid);
       newUser.save((err, savedUser) => {
         if (err) return res.json(err);
         return res.json(savedUser);
