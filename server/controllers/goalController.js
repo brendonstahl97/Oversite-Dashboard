@@ -12,16 +12,21 @@ module.exports = {
         }
     },
     create: (req, res) => {
-        const { userUuid, name, goalType, completionDate, data } = req.body;
-        console.log(req.body);
-        console.log(req);
+        const { goalName, unitType, description, goalType, targetType, target, avgPeriod, completionDate, consequenceTargetContact, successMessage, failureMessage } = req.body;
 
         const newGoal = new db.Goal({
-            userUuid,
-            name,
-            goalType,
-            completionDate,
-            data,
+            goalName: goalName,
+            unitType: unitType,
+            description: description,
+            goalType: goalType,
+            targetType: targetType,
+            target: target,
+            avgPeriod: avgPeriod,
+            completionDate: completionDate,
+            consequenceTargetContact: consequenceTargetContact,
+            successMessage: successMessage,
+            failureMessage: failureMessage,
+            goalLog: []
         });
 
         console.log(newGoal);
