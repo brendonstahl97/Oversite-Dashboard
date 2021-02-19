@@ -12,6 +12,7 @@ module.exports = {
         }
     },
     create: (req, res) => {
+        console.log(req.body);
         const { goalName, unitType, description, goalType, targetType, target, avgPeriod, completionDate, consequenceTargetContact, successMessage, failureMessage } = req.body;
 
         const newGoal = new db.Goal({
@@ -29,7 +30,6 @@ module.exports = {
             goalLog: []
         });
 
-        console.log(newGoal);
         newGoal.save((err, savedGoal) => {
             if (err) return res.json(err);
             return res.json(savedGoal);

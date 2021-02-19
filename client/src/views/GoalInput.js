@@ -14,9 +14,9 @@ function NewGoal(props) {
   const [goalState, setGoalState] = useState({
     goalName: "",
     unitType: "",
-    goalType: undefined,
-    targetType: undefined,
-    target: undefined,
+    goalType: "",
+    targetType: "",
+    target: "",
     avgPeriod: "",
     completionDate: "",
     consequenceTargetContact: "",
@@ -30,7 +30,7 @@ function NewGoal(props) {
     console.table(goalState);
     console.log('Button click ...');
 
-    useAxios.post('/api/goals', { goalState }).then((res) =>
+    useAxios.post('/api/goals', goalState).then((res) =>
       console.log(res));
   };
 
