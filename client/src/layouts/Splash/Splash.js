@@ -8,10 +8,17 @@ import RegisterModal from "components/RegisterModal/RegisterModal";
 import LoginModal from "components/LoginModal/LoginModal";
 
 // reactstrap components
-import { Row, Col, Container } from "reactstrap";
+import { Media, Row, Col, Container } from "reactstrap";
+// import mom from "../client/public/angrymom.jpg"
 
 const Splash = (props) => {
   const mainPanelRef = React.useRef(null);
+  const imgStyle = {
+    maxHeight: 175,
+  };
+  const hStyle = {
+    textAlign: "center"
+  }
 
   return (
     <BackgroundColorContext.Consumer>
@@ -23,9 +30,17 @@ const Splash = (props) => {
               <Container>
                 <Row>
                   <Col lg="10">
+                    <div className="photo d-flex justify-content-center">
+                      <img
+                        alt="Angry Mom cartoon"
+                        src={require("assets/img/angrymom.png").default}
+                        style={imgStyle}
+                        />
+                    </div>
+                    <br></br>
                     <div className="content">
-                      <h1 className="d-flex justify-content-center"><u>OVERSITE</u></h1>
-                      <h2 className="d-flex justify-content-center">The personal goal tracker, with a catch</h2>
+                      <h1 style={hStyle}><u>OVERSITE</u></h1>
+                      <h2 style={hStyle}>The personal goal tracker, with a catch</h2>
                     </div>
                   </Col>
                 </Row>
@@ -44,7 +59,14 @@ const Splash = (props) => {
                 <Row>
                   <Col lg="10">
                     <div className="content">
-                      <h2 className="d-flex justify-content-center">Meet your goals, or we'll tell your Mom</h2>
+                      <h2 style={hStyle}>Meet your goals, or we tell your Mom</h2>
+                    </div>
+                    <div className="photo d-flex justify-content-center">
+                      <img
+                        alt="Angry Mom cartoon"
+                        src={require("assets/img/angrymom.png").default}
+                        style={imgStyle}
+                        />    
                     </div>
                   </Col>
                 </Row>
