@@ -30,20 +30,17 @@ const RegisterModal = (props) => {
     lastName: "",
     userId: "",
     username: "",
-    password: "",
+    password: ""
   });
 
   const history = useHistory();
 
   const handleClick = (e) => {
     e.preventDefault();
-
-    console.table(userState);
     console.log('Button click ...');
 
-    useAxios.post('/api/auth/signup', userState).then(
-      history.push("/admin/dashboard")
-    );
+    useAxios.post('/api/auth/signup', userState)
+      .then(history.push("/splash/login"));
   };
 
   const updateState = (e) => {
@@ -131,7 +128,7 @@ const RegisterModal = (props) => {
                   </Form>
                 </CardBody>
                 <CardFooter>
-                  <Button className="btn-fill" color="primary" type="submit" onClick={handleClick}>
+                  <Button className="btn-fill" color='success' type="submit" onClick={handleClick}>
                     Submit
                 </Button>
                 </CardFooter>
@@ -141,7 +138,7 @@ const RegisterModal = (props) => {
                   <h4>Already have an account?</h4>
                 </Row>
                 <Row>
-                  <Button className="btn float-left" onClick={() => history.push("/splash/login")}>Login</Button>
+                  <Button className="btn float-left" color='success' onClick={() => history.push("/splash/login")}>Login</Button>
                 </Row>
               </Col>
             </Jumbotron>

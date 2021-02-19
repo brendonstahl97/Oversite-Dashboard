@@ -54,7 +54,7 @@ const Splash = (props) => {
                     exact path="/splash/register"
                     component={RegisterModal}>
                   </Route>
-                  <Redirect from="*" to="/splash/register" />
+                  <Redirect from="*" to="/splash/login" />
                 </Switch>
                 <Row>
                   <Col lg="10">
