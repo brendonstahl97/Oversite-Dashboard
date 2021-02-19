@@ -2,13 +2,18 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const goalSchema = new Schema({
-    userUuid: { type: String, required: true },
-    name: { type: String, required: true },
-    completionDate: { type: String, required: true },
-    description: String,
+    goalName: { type: String, required: true },
+    unitType: { type: String, required: true },
+    description: { type: String, required: true },
     goalType: { type: String, required: true },
-    consequence: { type: String, required: true },
-    data: []
+    targetType: { type: String, required: true },
+    target: { type: String, required: true },
+    avgPeriod:{ type: String, required: true },
+    completionDate: { type: String, required: true },
+    consequenceTargetContact: { type: String, required: true },
+    successMessage: { type: String, required: true },
+    failureMessage: { type: String, required: true },
+    goalLog: [],
 }
 );
 
