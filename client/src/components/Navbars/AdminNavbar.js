@@ -72,17 +72,6 @@ function AdminNavbar(props) {
       });
   }, [document.cookie]);
 
-  const checkForUser = async () => {
-    const userFound = false;
-    while (!userFound) {
-      await axios.get("/api/auth/user")
-        .then((res) => {
-          if (res.data.user) {
-            return (res.data.user);
-          }
-        });
-    };
-  };
 
   // function that adds color white/transparent to the navbar on resize (this is for the collapse)
   const updateColor = () => {
