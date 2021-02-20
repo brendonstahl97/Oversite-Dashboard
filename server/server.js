@@ -28,6 +28,8 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Passport
+
+
 app.use(session({
   secret: process.env.AUTH_SECRET,
   store: new MongoStore({ mongooseConnection: dbConnection }),

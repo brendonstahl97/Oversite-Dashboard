@@ -35,7 +35,11 @@ const RegisterModal = (props) => {
     console.log('Button click ...');
 
     useAxios.post('/api/auth/login', userState)
-      .then(history.push("/admin/dashboard"));
+      .then(res => {
+        if (res.data) {
+          history.push("/admin/dashboard");
+        };
+      });
   };
 
   const updateState = (e) => {
