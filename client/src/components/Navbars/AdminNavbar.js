@@ -46,20 +46,25 @@ function AdminNavbar(props) {
   const [color, setcolor] = useState("navbar-transparent");
   const [userData, setUserData] = useState({
     firstName: "",
-    lastName: ""
+    lastName: "",
+    _id: "",
   });
   useEffect(() => {
 
     //populate userData
     axios.get("/api/auth/user")
-      .then(res => {
-        // console.log(res.data.user);
-        const { firstName, lastName } = res.data.user;
-        console.log(firstName, " ", lastName);
+      .then(async (res) => {
+
+        console.log(res.data.user);
+
+        const { firstName, lastName, _id } = await res.data.user;
+
         setUserData({
           firstName: firstName,
-          lastName: lastName
+          lastName: lastName,
+          _id: _id,
         });
+
       });
 
     window.addEventListener("resize", updateColor);

@@ -1,15 +1,20 @@
+const { Goal } = require("../models");
 const db = require("../models");
 
 // Defining methods for the Goals Controller
 module.exports = {
-    getGoal: (req, res, next) => {
-        console.log('===== goal!!======');
-        console.log(req.goal);
-        if (req.goal) {
-            return res.json({ goal: req.goal });
-        } else {
-            return res.json({ goal: null });
-        }
+    listGoals: (req, res, next) => {
+        console.log(req);
+        let { _id } = req.body.data
+        let goalList = Goal.find({ _id: _id });
+        console.log(goalList);
+        res.json(goalList);
+
+        // if (req.goal) {
+        //     return res.json({ goal});
+        // } else {
+        //     return res.json({ goal: null });
+        // }
     },
     create: (req, res) => {
         const { goalName, unitType, description, goalType, targetType, target, avgPeriod, completionDate, consequenceTargetContact, successMessage, failureMessage } = req.body;
