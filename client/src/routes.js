@@ -43,12 +43,5 @@ var routes = [
     component: NewGoal,
     layout: "/admin",
   },
-  {
-    path: "/login",
-    name: "Login",
-    icon: "tim-icons icon-key-25",
-    component: Login,
-    layout: "/admin",
-  },
 ];
 export default routes;

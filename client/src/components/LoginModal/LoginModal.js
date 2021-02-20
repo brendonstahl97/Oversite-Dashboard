@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import useAxios from "axios";
 import { useHistory } from 'react-router-dom';
+import { AvForm, AvField } from "availity-reactstrap-validation";
+
 
 // reactstrap components
 import {
@@ -58,33 +60,50 @@ const RegisterModal = (props) => {
                 <Card>
                   <CardBody>
                     <Form>
+                      <AvForm>
                       <Row>
                         <Col className="" md="6">
                           <FormGroup>
                             <label htmlFor="exampleInputEmail1">
                               Email address
                         </label>
-                            <Input
+                            <AvField
                               placeholder=""
                               name="email"
                               type="email"
                               value={userState.username}
-                              onChange={updateState} />
+                              onChange={updateState} 
+                              validate={{
+                                required: true,
+                                email: true,
+                              }}/>
                           </FormGroup>
                         </Col>
                         <Col className="" md="6">
                           <FormGroup>
                             <label>Password</label>
-                            <Input
+                            <AvField
                               placeholder=""
                               value={userState.password}
                               name="password"
                               type="password"
                               onChange={updateState}
+                              validate={{
+                                required: {
+                                  value: true,
+                                  errorMessage: "Please enter a password"
+                                },
+                                pattern: {
+                                  value: "^[A-Za-z0-9]+$",
+                                  errorMessage:
+                                    "Please enter a valid password"
+                                }
+                              }}
                             />
                           </FormGroup>
                         </Col>
                       </Row>
+                    </AvForm>
                     </Form>
                   </CardBody>
                   <CardFooter>
