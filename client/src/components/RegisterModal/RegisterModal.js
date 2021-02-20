@@ -6,6 +6,8 @@ import {
   backgroundColors,
 } from "contexts/BackgroundColorContext";
 // import logo from './public/react-logo.png';
+import { AvForm, AvField } from "availity-reactstrap-validation";
+
 
 // reactstrap components
 import {
@@ -24,6 +26,7 @@ import {
 } from "reactstrap";
 
 const RegisterModal = (props) => {
+  const [email, setEmail] = useState(false);
 
   const [userState, setUserState] = useState({
     firstName: "",
@@ -50,7 +53,6 @@ const RegisterModal = (props) => {
     });
   };
 
-
   return (
     <div className="content">
       <Container>
@@ -62,13 +64,14 @@ const RegisterModal = (props) => {
               <Card>
                 <CardBody>
                   <Form>
+                    <AvForm>
                     <Row>
                       <Col className="" md="4">
                         <FormGroup>
                           <label>Username</label>
                           <Input
                             value={userState.userId}
-                            placeholder="userId"
+                            placeholder=""
                             name="userId"
                             type="text"
                             onChange={updateState}
@@ -80,7 +83,7 @@ const RegisterModal = (props) => {
                           <label>First Name</label>
                           <Input
                             value={userState.firstName}
-                            placeholder="firstName"
+                            placeholder=""
                             name="firstName"
                             type="text"
                             onChange={updateState}
@@ -92,7 +95,7 @@ const RegisterModal = (props) => {
                           <label>Last Name</label>
                           <Input
                             value={userState.lastName}
-                            placeholder="lastName"
+                            placeholder=""
                             name="lastName"
                             type="text"
                             onChange={updateState}
@@ -104,27 +107,44 @@ const RegisterModal = (props) => {
                           <label htmlFor="exampleInputEmail1">
                             Email address
                         </label>
-                          <Input
+                          <AvField
                             placeholder=""
                             name="username"
                             type="email"
                             value={userState.username}
-                            onChange={updateState} />
+                            onChange={updateState} 
+                            validate={{
+                              required: true,
+                              email: true,
+                            }}
+                            />
                         </FormGroup>
                       </Col>
                       <Col className="" md="6">
                         <FormGroup>
                           <label>Password</label>
-                          <Input
+                          <AvField
                             placeholder=""
                             value={userState.password}
                             name="password"
                             type="password"
                             onChange={updateState}
+                            validate={{
+                              required: {
+                                value: true,
+                                errorMessage: "Please enter a password"
+                              },
+                              pattern: {
+                                value: "^[A-Za-z0-9]+$",
+                                errorMessage:
+                                  "Your password must be composed only with letters and numbers"
+                              }
+                            }}
                           />
                         </FormGroup>
                       </Col>
                     </Row>
+                    </AvForm>
                   </Form>
                 </CardBody>
                 <CardFooter>

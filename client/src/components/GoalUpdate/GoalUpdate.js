@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Row, Col, Card, CardHeader, CardTitle, Button, Form, Label, Input, CardBody } from 'reactstrap';
 import useAxios from 'axios';
-import axios from 'axios';
 
 const GoalUpdate = (props) => {
     var today = new Date();
