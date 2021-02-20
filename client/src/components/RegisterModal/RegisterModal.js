@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import useAxios from "axios";
 import { useHistory } from 'react-router-dom';
+<<<<<<< HEAD
 import {
   BackgroundColorContext,
   backgroundColors,
 } from "contexts/BackgroundColorContext";
 // import logo from './public/react-logo.png';
+=======
+
+>>>>>>> 6ff551ac8c2bbb5cb4221e90b1d22797a04524c4
 import { AvForm, AvField } from "availity-reactstrap-validation";
 
 

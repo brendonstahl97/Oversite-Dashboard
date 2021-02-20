@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Row, Col, Card, CardHeader, CardTitle, Button, Form, FormGroup, Label, Input, CardBody } from 'reactstrap';
 import useAxios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 import GoalUpdate from "../components/GoalUpdate/GoalUpdate.js"
-
 
 function NewGoal(props) {
 
@@ -14,15 +14,14 @@ function NewGoal(props) {
   const [goalState, setGoalState] = useState({
     goalName: "",
     unitType: "",
-    goalType: undefined,
-    targetType: undefined,
-    target: undefined,
+    goalType: "",
+    targetType: "",
+    target: "",
     avgPeriod: "",
     completionDate: "",
-    consequenceTargetContact: "",
-    successMessage: "",
-    failureMessage: "",
-    goalLog: []
+    description: "",
+    habit: undefined,
+    consequences: [],
   });
 
   const handleClick = (e) => {
@@ -30,7 +29,7 @@ function NewGoal(props) {
     console.table(goalState);
     console.log('Button click ...');
 
-    useAxios.post('/api/goals', { goalState }).then((res) =>
+    useAxios.post('/api/goals', goalState).then((res) =>
       console.log(res));
   };
 
@@ -156,6 +155,6 @@ function NewGoal(props) {
     </div>
   );
 
-}
+};
 
 export default NewGoal;
