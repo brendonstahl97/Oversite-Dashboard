@@ -48,7 +48,7 @@ function AdminNavbar(props) {
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
-    id: ""
+    id: "",
   });
 
   const history = useHistory()
@@ -73,7 +73,7 @@ function AdminNavbar(props) {
           lastName: lastName,
           id: _id
         });
-        window.user = {userData};
+        window.user = { userData };
         console.log(window.user)
       });
   }, []);
