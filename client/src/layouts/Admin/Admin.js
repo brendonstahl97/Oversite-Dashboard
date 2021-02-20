@@ -102,7 +102,7 @@ function Admin(props) {
     return "Brand";
   };
 
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
 
 
   return (

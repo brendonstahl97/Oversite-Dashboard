@@ -42,6 +42,6 @@ var routes = [
     icon: "tim-icons icon-trophy",
     component: NewGoal,
     layout: "/admin",
-  },
+  }
 ];
 export default routes;
