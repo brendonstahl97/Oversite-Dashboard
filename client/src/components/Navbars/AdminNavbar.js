@@ -16,6 +16,7 @@
 
 */
 import React, { useEffect, useState } from "react";
+import { useHistory } from 'react-router-dom';
 // nodejs library that concatenates classes
 import classNames from "classnames";
 
@@ -48,6 +49,8 @@ function AdminNavbar(props) {
     firstName: "",
     lastName: ""
   });
+
+  const history = useHistory()
 
   useEffect(() => {
     window.addEventListener("resize", updateColor);
@@ -96,12 +99,11 @@ function AdminNavbar(props) {
   };
 
   const handleLogOut = () => {
-    if (props.loggedIn) {
-      axios.post("/auth/logout")
-        .catch(
-          err => console.error(err)
-        );
-    }
+    axios.post("/auth/logout")
+      .then(history.push('/splash/login'))
+      .catch(
+        err => console.error(err)
+      );
   };
   return (
     <>
@@ -148,13 +150,6 @@ function AdminNavbar(props) {
                   <p className="d-lg-none">Log out</p>
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-navbar" right tag="ul">
-                  <NavLink tag="li">
-                    <DropdownItem className="nav-item">Profile</DropdownItem>
-                  </NavLink>
-                  <NavLink tag="li">
-                    <DropdownItem className="nav-item">Settings</DropdownItem>
-                  </NavLink>
-                  <DropdownItem divider tag="li" />
                   <NavLink tag="li">
                     <DropdownItem className="nav-item" onClick={handleLogOut}>Log out</DropdownItem>
                   </NavLink>
