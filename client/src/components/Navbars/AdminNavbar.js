@@ -48,12 +48,21 @@ function AdminNavbar(props) {
     firstName: "",
     lastName: ""
   });
-  useEffect(() => {
 
+  useEffect(() => {
+    window.addEventListener("resize", updateColor);
+
+    // Specify how to clean up after this effect:
+    return function cleanup() {
+      window.removeEventListener("resize", updateColor);
+    };
+  });
+
+  useEffect(() => {
     //populate userData
     axios.get("/api/auth/user")
-      .then(res => {
-        // console.log(res.data.user);
+      .then((res) => {
+        console.log(res.data);
         const { firstName, lastName } = res.data.user;
         console.log(firstName, " ", lastName);
         setUserData({
@@ -61,14 +70,9 @@ function AdminNavbar(props) {
           lastName: lastName
         });
       });
+  }, [document.cookie]);
 
-    window.addEventListener("resize", updateColor);
 
-    // Specify how to clean up after this effect:
-    return function cleanup() {
-      window.removeEventListener("resize", updateColor);
-    };
-  }, []);
   // function that adds color white/transparent to the navbar on resize (this is for the collapse)
   const updateColor = () => {
     if (window.innerWidth < 993 && collapseOpen) {

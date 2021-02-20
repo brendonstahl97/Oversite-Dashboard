@@ -4,11 +4,10 @@ const Schema = mongoose.Schema;
 const goalSchema = new Schema({
     goalName: { type: String, required: true },
     unitType: { type: String, required: true },
-    description: { type: String, required: true },
     goalType: { type: String, required: true },
     targetType: { type: String, required: true },
     target: { type: Number, required: true },
-    avgPeriod:{ type: String, required: true },
+    avgPeriod: { type: String, required: true },
     completionDate: { type: String, required: true },
     consequenceTargetContact: { type: String, required: true },
     successMessage: { type: String, required: true },

@@ -12061,7 +12061,7 @@ hr {
 .sidebar-wrapper {
   -webkit-overflow-scrolling: touch; }
 
-@media (min-width: 991px) {
+@media (min-width: 991px)
   .sidebar,
   .main-panel,
   .sidebar-wrapper {
