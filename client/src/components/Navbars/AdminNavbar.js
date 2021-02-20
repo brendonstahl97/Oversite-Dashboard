@@ -78,6 +78,11 @@ function AdminNavbar(props) {
       });
   }, []);
 
+  useEffect(() => {
+    window.user = { userData };
+    console.log(window.user);
+  }, [userData.id]);
+
 
   // function that adds color white/transparent to the navbar on resize (this is for the collapse)
   const updateColor = () => {
