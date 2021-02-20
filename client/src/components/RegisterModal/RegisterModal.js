@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import useAxios from "axios";
 import { useHistory } from 'react-router-dom';
-import {
-  BackgroundColorContext,
-  backgroundColors,
-} from "contexts/BackgroundColorContext";
-// import logo from './public/react-logo.png';
+
 import { AvForm, AvField } from "availity-reactstrap-validation";
 
 

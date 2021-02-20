@@ -32,6 +32,7 @@
     "express-session": "^1.17.1",
     "if-env": "^1.0.4",
     "mongoose": "^5.3.16",
+    "mongoose-type-email": "^1.1.2",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",

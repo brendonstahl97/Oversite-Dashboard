@@ -4,6 +4,7 @@ import GoalListItem from "../GoalListItem/GoalListItem.js";
 
 export default function GoalList(props) {
 
+    //window.user.goalList
     let goalData = [
         {
             goalName: "Quit Smoking",
