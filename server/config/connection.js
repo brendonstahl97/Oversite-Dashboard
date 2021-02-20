@@ -22,7 +22,7 @@ db.on('error', err => {
 });
 
 db.once('open', () => {
-	console.log(`You have successfully connected to your mongo database: ${MONGO_URL}`);
+	console.log(`You have successfully connected to your mongo database`);
 });
 
 module.exports = db;
