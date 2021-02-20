@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row, Col, Card, CardHeader, CardTitle, Button, Form, FormGroup, Label, Input, CardBody } from 'reactstrap';
 import useAxios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
@@ -12,6 +12,7 @@ function NewGoal(props) {
   //Potentially refactor to change component where state lives.  Add Context.
 
   const [goalState, setGoalState] = useState({
+    userId: "",
     goalName: "",
     unitType: "",
     goalType: "",
@@ -20,9 +21,17 @@ function NewGoal(props) {
     avgPeriod: "",
     completionDate: "",
     description: "",
-    habit: undefined,
     consequences: [],
   });
+
+  useEffect(() => {
+    setGoalState({
+      ...goalState,
+      userId: window.user.userData.id
+    });
+  }, []);
+
+
 
   const handleClick = (e) => {
     e.preventDefault();
