@@ -61,13 +61,13 @@ const Splash = (props) => {
                     <div className="content">
                       <h2 style={hStyle}>Meet your goals, or we tell your Mom</h2>
                     </div>
-                    <div className="photo d-flex justify-content-center">
+                    {/* <div className="photo d-flex justify-content-center">
                       <img
                         alt="Angry Mom cartoon"
                         src={require("assets/img/angrymom.png").default}
                         style={imgStyle}
                         />    
-                    </div>
+                    </div> */}
                   </Col>
                 </Row>
               </Container>
