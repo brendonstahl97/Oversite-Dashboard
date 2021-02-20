@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const goalSchema = new Schema({
+    userId: {type: String, required: true},
     goalName: { type: String, required: true },
     unitType: { type: String, required: true },
     goalType: { type: String, required: true },
