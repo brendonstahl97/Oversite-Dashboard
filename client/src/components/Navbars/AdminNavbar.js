@@ -47,7 +47,8 @@ function AdminNavbar(props) {
   const [color, setcolor] = useState("navbar-transparent");
   const [userData, setUserData] = useState({
     firstName: "",
-    lastName: ""
+    lastName: "",
+    id: ""
   });
 
   const history = useHistory()
@@ -65,15 +66,17 @@ function AdminNavbar(props) {
     //populate userData
     axios.get("/api/auth/user")
       .then((res) => {
-        console.log(res.data);
-        const { firstName, lastName } = res.data.user;
-        console.log(firstName, " ", lastName);
+        console.log(res.data.user);
+        const { firstName, lastName, _id } = res.data.user;
         setUserData({
           firstName: firstName,
-          lastName: lastName
+          lastName: lastName,
+          id: _id
         });
+        window.user = {userData};
+        console.log(window.user)
       });
-  }, [document.cookie]);
+  }, []);
 
 
   // function that adds color white/transparent to the navbar on resize (this is for the collapse)
