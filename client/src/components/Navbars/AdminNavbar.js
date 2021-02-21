@@ -74,7 +74,7 @@ function AdminNavbar(props) {
           id: _id
         });
         window.user = { userData };
-        console.log(window.user)
+        console.log(window.user);
       });
   }, []);
 
