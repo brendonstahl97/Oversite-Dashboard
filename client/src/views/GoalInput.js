@@ -13,10 +13,10 @@ function NewGoal(props) {
     userId: "",
     goalName: "",
     unitType: "",
-    goalType: "",
-    targetType: "",
+    goalType: "Reduce",
+    targetType: "Average",
     target: 0,
-    avgPeriod: "",
+    avgPeriod: "Day",
     completionDate: "",
     consequenceTargetContact: "",
     successMessage: "",
@@ -36,9 +36,14 @@ function NewGoal(props) {
   const handleClick = (e) => {
     e.preventDefault();
 
+    setGoalState({
+      ...goalState,
+      userId: window.user.userData.id
+    });
+
     let validate = Object.values(goalState);
     validate.splice(validate.length - 1);
-    console.log("validate.includes(", validate.includes(""))
+    console.log(validate)
 
     //Check if a field is empty, throw alert if true.
     if (validate.includes("")) {
