@@ -8,7 +8,7 @@ const GoalUpdate = (props) => {
     console.log(today.toLocaleDateString("en-US"));
 
     const [goalState, setGoalState] = useState({
-        userUuid: "",
+        userId: props.userId,
         name: "",
         goalValue: "",
         goalType: "",
@@ -27,6 +27,13 @@ const GoalUpdate = (props) => {
                 today.toLocaleDateString("en-US")
             ]
         }).then((res) => console.log(res));
+    };
+
+    const handleGetGoals = () => {
+        useAxios.get(`/api/goals/list/${props.userId}`)
+            .then(res => {
+                console.log(res);
+            });
     };
 
     const updateState = (e) => {
@@ -49,7 +56,8 @@ const GoalUpdate = (props) => {
                                 <Label for="goalValueInput">How many units did you accomplish for today's goal?</Label>
                                 <Input type="number" name="goalValue" id="goalValueInput" onChange={updateState} />
                                 <Button onClick={handleClick}> Submit</Button>
-                                <Button onClick={() => { useAxios.get('/api/goals/list/', { params: { _id: "602f13ce263c604c540f13a4" } }) }}> TEST getGoals</Button>
+                                {/* <Button onClick={() => { useAxios.get('/api/goals/list/', { params: { _id: props.userId } }) }}>TEST getGoals</Button> */}
+                                <Button onClick={handleGetGoals}>TEST getGoals</Button>
                             </Form>
                         </CardBody>
                     </Card>
@@ -57,6 +65,6 @@ const GoalUpdate = (props) => {
             </Row>
         </div>
     );
-}
+};
 
 export default GoalUpdate;
