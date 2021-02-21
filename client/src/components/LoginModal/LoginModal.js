@@ -36,6 +36,9 @@ const Login = (props) => {
     useAxios.post('/api/auth/login', userState)
       .then(res => {
         if (res.data) {
+          //assignment of userdata to window object on sucessful login
+          window.user = res.data.user;
+          console.log(window.user);
           history.push("/admin/dashboard");
         };
       });
