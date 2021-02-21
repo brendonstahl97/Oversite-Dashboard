@@ -45,11 +45,6 @@ function AdminNavbar(props) {
   const [collapseOpen, setcollapseOpen] = useState(false);
   const [modalSearch, setmodalSearch] = useState(false);
   const [color, setcolor] = useState("navbar-transparent");
-  const [userData, setUserData] = useState({
-    firstName: "",
-    lastName: "",
-    id: "",
-  });
 
   const history = useHistory()
 
@@ -61,27 +56,6 @@ function AdminNavbar(props) {
       window.removeEventListener("resize", updateColor);
     };
   });
-
-  useEffect(() => {
-    //populate userData
-    axios.get("/api/auth/user")
-      .then((res) => {
-        console.log(res.data.user);
-        const { firstName, lastName, _id } = res.data.user;
-        setUserData({
-          firstName: firstName,
-          lastName: lastName,
-          id: _id
-        });
-        window.user = { userData };
-        console.log(window.user);
-      });
-  }, []);
-
-  useEffect(() => {
-    window.user = { userData };
-    console.log(window.user);
-  }, [userData.id]);
 
 
   // function that adds color white/transparent to the navbar on resize (this is for the collapse)
@@ -140,7 +114,7 @@ function AdminNavbar(props) {
           </NavbarToggler>
           <Collapse navbar isOpen={collapseOpen}>
             <Nav className="ml-auto" navbar>
-              <h2>Hello, {userData.firstName} {userData.lastName}</h2>
+              {/* <h2>Hello, {window.user.firstName || ''} {window.user.lastName || ''}</h2> */}
               <UncontrolledDropdown nav>
                 <DropdownToggle
                   caret
