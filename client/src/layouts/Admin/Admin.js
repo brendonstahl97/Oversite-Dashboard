@@ -15,14 +15,13 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { useState } from "react";
+import React from "react";
 import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
 
 // core components
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
-import Footer from "components/Footer/Footer.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 import FixedPlugin from "components/FixedPlugin/FixedPlugin.js";
 
@@ -102,9 +101,6 @@ function Admin(props) {
     return "Brand";
   };
 
-  const [loggedIn, setLoggedIn] = useState(false);
-
-
   return (
     <BackgroundColorContext.Consumer>
       {({ color, changeColor }) => (
@@ -124,16 +120,11 @@ function Admin(props) {
                 brandText={getBrandText(location.pathname)}
                 toggleSidebar={toggleSidebar}
                 sidebarOpened={sidebarOpened}
-                loggedIn={loggedIn}
               />
               <Switch>
                 {getRoutes(routes)}
                 <Redirect from="*" to="/admin/dashboard" />
               </Switch>
-              {
-                // we don't want the Footer to be rendered on map page
-                location.pathname === "/admin/maps" ? null : <Footer fluid />
-              }
             </div>
           </div>
           <FixedPlugin bgColor={color} handleBgClick={changeColor} />
