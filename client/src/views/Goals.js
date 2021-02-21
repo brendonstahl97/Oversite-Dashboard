@@ -15,27 +15,6 @@ const Goals = (props) => {
       <div className="content">
         <Row>
           <Col>
-            <Card className="card-chart">
-              <CardHeader>
-                <h5 className="card-category">Total Goals</h5>
-                <CardTitle tag="h3">
-                  <i className="tim-icons icon-check-2 text-success" /> 5
-                </CardTitle>
-              </CardHeader>
-              <CardBody>
-                <div className="chart-area">
-                  <Line
-                    data={chartExample2.data}
-                    options={chartExample2.options}
-                  />
-                </div>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col>
             <Card>
               <CardHeader>
                 <CardTitle tag="h4">Goals List</CardTitle>

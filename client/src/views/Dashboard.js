@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // react plugin used to create charts
@@ -23,12 +23,10 @@ import {
 // core components
 import {
   chartExample1,
-  chartExample2,
-  chartExample3,
-  chartExample4,
 } from "variables/charts.js";
 
 function Dashboard(props) {
+  
   const [bigChartData, setbigChartData] = React.useState("data1");
   const setBgChartData = (name) => {
     setbigChartData(name);
@@ -116,158 +114,7 @@ function Dashboard(props) {
             </Card>
           </Col>
         </Row>
-        <Row>
-          <Col lg="4">
-            <Card className="card-chart">
-              <CardHeader>
-                <h5 className="card-category">Total Goals</h5>
-                <CardTitle tag="h3">
-                  <i className="tim-icons icon-trophy text-info" /> 5
-                </CardTitle>
-              </CardHeader>
-              <CardBody>
-                <div className="chart-area">
-                  <Line
-                    data={chartExample2.data}
-                    options={chartExample2.options}
-                  />
-                </div>
-              </CardBody>
-            </Card>
-          </Col>
-          <Col lg="4">
-            <Card className="card-chart">
-              <CardHeader>
-                <h5 className="card-category">Daily Tasks</h5>
-                <CardTitle tag="h3">
-                  <i className="tim-icons icon-bell-55 text-primary" />{" "}
-                  3
-                </CardTitle>
-              </CardHeader>
-              <CardBody>
-                <div className="chart-area">
-                  <Bar
-                    data={chartExample3.data}
-                    options={chartExample3.options}
-                  />
-                </div>
-              </CardBody>
-            </Card>
-          </Col>
-          <Col lg="4">
-            <Card className="card-chart">
-              <CardHeader>
-                <h5 className="card-category">Completed Tasks</h5>
-                <CardTitle tag="h3">
-                  <i className="tim-icons icon-check-2 text-success" /> 2
-                </CardTitle>
-              </CardHeader>
-              <CardBody>
-                <div className="chart-area">
-                  <Line
-                    data={chartExample4.data}
-                    options={chartExample4.options}
-                  />
-                </div>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-        <Row>
-          <Col lg="6" md="12">
-            <Card >
-              <CardHeader>
-                <CardTitle tag="h4">Oustanding Tasks</CardTitle>
-              </CardHeader>
-              <CardBody>
-                <Table className="tablesorter" responsive>
-                  {/* <thead className="text-primary">
-                    <tr>
-                      <th>Task Name</th>
-                      <th className="text-right">Due Date</th>
-                    </tr>
-                  </thead> */}
-                  <tbody>
-                    <tr>
-                      <td>
-                        <FormGroup check>
-                          <Label check>
-                            <Input defaultValue="" type="checkbox" />
-                            <span className="form-check-sign">
-                              <span className="check" />
-                            </span>
-                          </Label>
-                        </FormGroup>
-                      </td>
-                      <td>Do 25 push ups every day</td>
-                      <td className="text-center">2/10/21</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <FormGroup check>
-                          <Label check>
-                            <Input defaultValue="" type="checkbox" />
-                            <span className="form-check-sign">
-                              <span className="check" />
-                            </span>
-                          </Label>
-                        </FormGroup>
-                      </td>
-                      <td>Eat less McDonalds every week</td>
-                      <td className="text-center">2/10/21</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <FormGroup check>
-                          <Label check>
-                            <Input defaultValue="" type="checkbox" />
-                            <span className="form-check-sign">
-                              <span className="check" />
-                            </span>
-                          </Label>
-                        </FormGroup>
-                      </td>
-                      <td>Stop smoking by April</td>
-                      <td className="text-center">2/10/21</td>
-                    </tr>
-                  </tbody>
-                </Table>
-              </CardBody>
-            </Card>
-          </Col>
-          <Col lg="6" md="12">
-            <Card>
-              <CardHeader>
-                <CardTitle tag="h4">Completed Tasks</CardTitle>
-              </CardHeader>
-              <CardBody>
-                <Table className="tablesorter" responsive>
-                  <thead className="text-primary">
-                    <tr>
-                      <th>Goal Name</th>
-                      <th className="text-center">Date Completed</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Gym</td>
-                      <td className="text-center">2/10/21</td>
-                    </tr>
-                    <tr>
-                      <td>Learn ReactJs</td>
-                      <td className="text-center">2/10/21</td>
-                    </tr>
-                    <tr>
-                      <td>Quit Smoking</td>
-                      <td className="text-center">2/10/21</td>
-                    </tr>
-
-                  </tbody>
-                </Table>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
+        
       </div>
     </>
   );

@@ -76,44 +76,15 @@ function Admin(props) {
   }, [location]);
 
 
-  const [userData, setUserData] = useState({
-    firstName: "",
-    lastName: "",
-    id: ""
-  });
-
-  const [goalData, setGoalData] = useState([]);
-
-
+  //fetch goals from the database and store in the window object
   useEffect(() => {
-    const response = axios.get("/api/auth/user");
-
-    response.then(res => {
-      const { firstName, lastName, _id } = res.data.user;
-      setUserData({
-        firstName: firstName,
-        lastName: lastName,
-        id: _id
-      });
-    });
-  }, []);
-
-  useEffect(() => {
-    window.user = userData;
-    if(window.user.id !== "") {
-      const data = axios.get(`/api/goals/list/${window.user.id}`);
+      const data = axios.get(`/api/goals/list/${window.user._id}`);
   
       data.then(res => {
         const goals = res.data;
-        setGoalData(goals);
+        window.goals = goals;
       });
-    };
-  }, [userData]);
-
-  useEffect(() => {
-    window.goals = goalData;
-  }, [goalData]);
-
+  }, []);
 
 
   // this function opens and closes the sidebar on small devices
@@ -164,7 +135,6 @@ function Admin(props) {
                 brandText={getBrandText(location.pathname)}
                 toggleSidebar={toggleSidebar}
                 sidebarOpened={sidebarOpened}
-                userData={userData}
               />
               <Switch>
                 {getRoutes(routes)}
