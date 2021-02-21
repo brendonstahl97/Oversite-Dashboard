@@ -29,7 +29,7 @@ function NewGoal(props) {
   useEffect(() => {
     setGoalState({
       ...goalState,
-      userId: window.user.userData.id
+      userId: window.user.id
     });
   }, []);
 
@@ -38,7 +38,7 @@ function NewGoal(props) {
 
     setGoalState({
       ...goalState,
-      userId: window.user.userData.id
+      userId: window.user.id
     });
 
     let validate = Object.values(goalState);

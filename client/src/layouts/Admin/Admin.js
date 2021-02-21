@@ -15,7 +15,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+
+import React, { useState, useEffect } from "react";
 import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
@@ -29,6 +30,7 @@ import routes from "routes.js";
 
 import logo from "assets/img/angrymom.png";
 import { BackgroundColorContext } from "contexts/BackgroundColorContext";
+import axios from "axios";
 
 var ps;
 
@@ -38,7 +40,7 @@ function Admin(props) {
   const [sidebarOpened, setsidebarOpened] = React.useState(
     document.documentElement.className.indexOf("nav-open") !== -1
   );
-  React.useEffect(() => {
+  useEffect(() => {
     if (navigator.platform.indexOf("Win") > -1) {
       document.documentElement.className += " perfect-scrollbar-on";
       document.documentElement.classList.remove("perfect-scrollbar-off");
@@ -59,7 +61,7 @@ function Admin(props) {
       }
     };
   });
-  React.useEffect(() => {
+  useEffect(() => {
     if (navigator.platform.indexOf("Win") > -1) {
       let tables = document.querySelectorAll(".table-responsive");
       for (let i = 0; i < tables.length; i++) {
@@ -72,6 +74,48 @@ function Admin(props) {
       mainPanelRef.current.scrollTop = 0;
     }
   }, [location]);
+
+
+  const [userData, setUserData] = useState({
+    firstName: "",
+    lastName: "",
+    id: ""
+  });
+
+  const [goalData, setGoalData] = useState([]);
+
+
+  useEffect(() => {
+    const response = axios.get("/api/auth/user");
+
+    response.then(res => {
+      const { firstName, lastName, _id } = res.data.user;
+      setUserData({
+        firstName: firstName,
+        lastName: lastName,
+        id: _id
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    window.user = userData;
+    if(window.user.id !== "") {
+      const data = axios.get(`/api/goals/list/${window.user.id}`);
+  
+      data.then(res => {
+        const goals = res.data;
+        setGoalData(goals);
+      });
+    };
+  }, [userData]);
+
+  useEffect(() => {
+    window.goals = goalData;
+  }, [goalData]);
+
+
+
   // this function opens and closes the sidebar on small devices
   const toggleSidebar = () => {
     document.documentElement.classList.toggle("nav-open");
