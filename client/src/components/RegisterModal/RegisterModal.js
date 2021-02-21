@@ -20,7 +20,6 @@ import {
 } from "reactstrap";
 
 const RegisterModal = (props) => {
-  const [email, setEmail] = useState(false);
 
   const [userState, setUserState] = useState({
     firstName: "",

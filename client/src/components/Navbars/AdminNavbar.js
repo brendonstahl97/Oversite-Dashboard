@@ -58,19 +58,17 @@ function AdminNavbar(props) {
   });
 
   useEffect(() => {
-    //populate userData
-    axios.get("/api/auth/user")
-      .then((res) => {
-        console.log(res.data.user);
-        const { firstName, lastName, _id } = res.data.user;
-        setUserData({
-          firstName: firstName,
-          lastName: lastName,
-          id: _id
-        });
-        window.user = { userData };
-        console.log(window.user)
-      });
+
+    const response = axios.get("/api/auth/user")
+
+    response.then(res => {
+      const { firstName, lastName, _id } = res.data.user
+      setUserData({
+        firstName: firstName,
+        lastName: lastName,
+        id: _id
+      })
+    })
   }, []);
 
   useEffect(() => {
@@ -95,10 +93,6 @@ function AdminNavbar(props) {
       setcolor("bg-white");
     }
     setcollapseOpen(!collapseOpen);
-  };
-  // this function is to open the Search modal
-  const toggleModalSearch = () => {
-    setmodalSearch(!modalSearch);
   };
 
   const handleLogOut = () => {

@@ -19,7 +19,7 @@ import {
 } from "reactstrap";
 
 
-const RegisterModal = (props) => {
+const Login = (props) => {
 
 
   const [userState, setUserState] = useState({
@@ -131,4 +131,4 @@ const RegisterModal = (props) => {
   );
 }
 
-export default RegisterModal;
+export default Login;
