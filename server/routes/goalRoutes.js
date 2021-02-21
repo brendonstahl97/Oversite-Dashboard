@@ -3,6 +3,6 @@ const goalController = require('../controllers/goalController');
 
 router.post("/", goalController.create);
 router.post("/update", goalController.addData);
-router.post("/list/:_id", goalController.listGoals);
+router.get("/list/:_id", goalController.listGoals);
 
 module.exports = router;
