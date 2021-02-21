@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Card, CardHeader, CardTitle, CardBody, Table } from "reactstrap";
+import { Row, Col, Card, CardHeader, CardTitle, CardBody } from "reactstrap";
 import GoalList from '../components/GoalList/GoalList.js';
 
 import {

@@ -8,7 +8,6 @@ import { AvForm, AvField } from "availity-reactstrap-validation";
 import {
   Button,
   Card,
-  CardHeader,
   CardBody,
   CardFooter,
   FormGroup,
@@ -21,7 +20,6 @@ import {
 } from "reactstrap";
 
 const RegisterModal = (props) => {
-  const [email, setEmail] = useState(false);
 
   const [userState, setUserState] = useState({
     firstName: "",

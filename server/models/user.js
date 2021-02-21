@@ -10,7 +10,6 @@ const userSchema = new Schema({
   userId: { type: String, unique: true, required: true },
   email: { type: mongoose.SchemaTypes.Email, unique: true, required: true },
   password: { type: String, unique: false, required: true },
-  uuid: { type: String, unique: true, required: true }
 });
 
 // Define schema methods
