@@ -1,5 +1,4 @@
 const db = require("../models");
-const { v4: uuidv4 } = require('uuid');
 
 // Defining methods for the userController
 module.exports = {
@@ -14,8 +13,7 @@ module.exports = {
   },
   register: (req, res) => {
 
-    const { firstName, lastName, userId, username, password, uuid } = req.body;
-    // console.log(username);
+    const { firstName, lastName, userId, username, password } = req.body;
 
     // ADD VALIDATION
     db.User.findOne({ 'email': username }, (err, userMatch) => {
@@ -31,10 +29,8 @@ module.exports = {
         'userId': userId,
         'email': username,
         'password': password,
-        'uuid': uuidv4(),
       });
 
-      // console.log(newUser.uuid);
       newUser.save((err, savedUser) => {
         if (err) return res.json(err);
         return res.json(savedUser);
@@ -45,6 +41,7 @@ module.exports = {
     if (req.user) {
       req.session.destroy();
       res.clearCookie('connect.sid'); // clean up!
+      res.redirect("/");
       return res.json({ msg: 'logging you out' });
     } else {
       return res.json({ msg: 'no user to log out!' });
@@ -62,7 +59,7 @@ module.exports = {
     if (cleanUser) {
       console.log(`Deleting ${cleanUser.password}`);
       delete cleanUser.password;
-    }
+    };
     res.json({ user: cleanUser });
   }
 };

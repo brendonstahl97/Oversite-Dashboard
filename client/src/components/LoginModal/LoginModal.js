@@ -8,12 +8,10 @@ import { AvForm, AvField } from "availity-reactstrap-validation";
 import {
   Button,
   Card,
-  CardHeader,
   CardBody,
   CardFooter,
   FormGroup,
   Form,
-  Input,
   Row,
   Col,
   Jumbotron,
@@ -21,8 +19,7 @@ import {
 } from "reactstrap";
 
 
-const LoginModal = (props) => {
-
+const Login = (props) => {
 
   const [userState, setUserState] = useState({
     email: "",
@@ -133,4 +130,5 @@ const LoginModal = (props) => {
   );
 }
 
-export default LoginModal;
+export default Login;
+
