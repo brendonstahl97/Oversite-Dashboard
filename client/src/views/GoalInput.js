@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Card, CardHeader, CardTitle, Button, Form, FormGroup, Label, Input, CardBody } from 'reactstrap';
+import { Row, Col, Card, CardHeader, CardTitle, Button, Form, FormGroup, Label, Input, Alert, CardBody } from 'reactstrap';
 import useAxios from 'axios';
-import { v4 as uuidv4 } from 'uuid';
+
 import GoalUpdate from "../components/GoalUpdate/GoalUpdate.js"
 
 function NewGoal(props) {
+  //alert
+  const [visible, setVisible] = useState(false);
 
-  //TODO:  
-  //Hook up radio buttons to updateState
-  //Send state info to backend
-  //Potentially refactor to change component where state lives.  Add Context.
-
+  //data form
   const [goalState, setGoalState] = useState({
     userId: "",
     goalName: "",
     unitType: "",
     goalType: "",
     targetType: "",
-    target: "",
+    target: 0,
     avgPeriod: "",
     completionDate: "",
-    description: "",
-    consequences: [],
+    consequenceTargetContact: "",
+    successMessage: "",
+    failureMessage: "",
+    goalLog: []
   });
 
   useEffect(() => {
@@ -35,11 +35,19 @@ function NewGoal(props) {
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.table(goalState);
-    console.log('Button click ...');
 
-    useAxios.post('/api/goals', goalState).then((res) =>
-      console.log(res));
+    let validate = Object.values(goalState);
+    validate.splice(validate.length - 1);
+    console.log("validate.includes(", validate.includes(""))
+
+    //Check if a field is empty, throw alert if true.
+    if (validate.includes("")) {
+      //throw alert
+      setVisible(true);
+    } else {
+      useAxios.post('/api/goals', goalState).then((res) =>
+        console.log(res));
+    }
   };
 
   const updateState = (e) => {
@@ -48,6 +56,11 @@ function NewGoal(props) {
       [e.target.name]: e.target.value
     });
   };
+
+
+
+  const onDismiss = () => setVisible(false);
+
 
   return (
 
@@ -106,7 +119,7 @@ function NewGoal(props) {
                     To
                     <Col xs="auto">
                       <Label for="goalTypeSelection">Target Units per Period</Label>
-                      <Input type="text" name="target" id="targetInput" placeholder="1" onChange={updateState} />
+                      <Input type="number" name="target" id="targetInput" placeholder="1" onChange={updateState} />
                     </Col>
                     By
                     <Col xs="auto">
@@ -148,6 +161,10 @@ function NewGoal(props) {
                   </h4>
 
                 </FormGroup>
+                <Alert color="danger" isOpen={visible} toggle={onDismiss}>
+                  Please ensure that you filled out the goal input form correctly!
+                </Alert>
+
                 <Button onClick={handleClick}> Submit</Button>
 
               </Form>
