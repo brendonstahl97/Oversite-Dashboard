@@ -164,6 +164,7 @@ function Admin(props) {
                 brandText={getBrandText(location.pathname)}
                 toggleSidebar={toggleSidebar}
                 sidebarOpened={sidebarOpened}
+                userData={userData}
               />
               <Switch>
                 {getRoutes(routes)}

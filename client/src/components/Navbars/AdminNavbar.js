@@ -105,7 +105,7 @@ function AdminNavbar(props) {
           </NavbarToggler>
           <Collapse navbar isOpen={collapseOpen}>
             <Nav className="ml-auto" navbar>
-              {/* <h2>Hello, {window.user.firstName || ''} {window.user.lastName || ''}</h2> */}
+              <h2>Hello, {props.userData.firstName} {props.userData.lastName}</h2>
               <UncontrolledDropdown nav>
                 <DropdownToggle
                   caret
