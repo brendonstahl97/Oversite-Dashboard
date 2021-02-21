@@ -5,7 +5,10 @@ const goalRoutes = require("./goalRoutes");
 
 
 router.use("/api/auth", authRoutes);
-router.use("/api/goal", goalRoutes)
+router.post("/api/goals", goalController.create);
+router.post("/api/goals/update", goalController.addData);
+router.get("/api/goals/list/:_id", goalController.listGoals);
+
 
 // If no API routes are hit, send the React app
 router.use((req, res) => {
