@@ -3,19 +3,17 @@ const db = require("../models");
 
 // Defining methods for the Goals Controller
 module.exports = {
-    listGoals: (req, res, next) => {
-        console.log(req);
-        let { _id } = req.body.data
-        let goalList = Goal.find({ _id: _id });
-        console.log(goalList);
-        res.json(goalList)
-
+    listGoals: async (req, res, next) => {
+        console.log(req.params);
+        let goalList = await Goal.find({ userId: req.params._id });
+        res.json(goalList);
     },
     create: (req, res) => {
         console.log(req.body);
-        const { goalName, unitType, description, goalType, targetType, target, avgPeriod, completionDate, consequenceTargetContact, successMessage, failureMessage } = req.body;
+        const { userId, goalName, unitType, description, goalType, targetType, target, avgPeriod, completionDate, consequenceTargetContact, successMessage, failureMessage } = req.body;
 
         const newGoal = new db.Goal({
+            userId: userId,
             goalName: goalName,
             unitType: unitType,
             description: description,

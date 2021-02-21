@@ -5,7 +5,9 @@ const goalRoutes = require("./goalRoutes");
 
 
 router.use("/api/auth", authRoutes);
-router.use("/api/goal", goalRoutes)
+router.use("/api/goals", goalRoutes);
+
+
 
 // If no API routes are hit, send the React app
 router.use((req, res) => {

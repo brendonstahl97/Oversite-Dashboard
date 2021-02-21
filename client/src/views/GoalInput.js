@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Row, Col, Card, CardHeader, CardTitle, Button, Form, FormGroup, Label, Input, Alert, CardBody } from 'reactstrap';
 import useAxios from 'axios';
 
-import GoalUpdate from "../components/GoalUpdate/GoalUpdate.js"
+
+import GoalUpdate from "../components/GoalUpdate/GoalUpdate.js";
+
 
 function NewGoal(props) {
   //alert
@@ -30,8 +32,6 @@ function NewGoal(props) {
       userId: window.user.userData.id
     });
   }, []);
-
-
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -177,7 +177,7 @@ function NewGoal(props) {
 
           </Card>
 
-          <GoalUpdate />
+          <GoalUpdate userId={goalState.userId} />
 
         </Col>
 

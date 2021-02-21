@@ -1,19 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Table } from 'reactstrap';
 import GoalListItem from "../GoalListItem/GoalListItem.js";
+import axios from 'axios';
 
 export default function GoalList(props) {
 
     //window.user.goalList
-    let goalData = [
-        {
-            goalName: "Quit Smoking",
-            targetType: "Total",
-            target: "0",
-            habit: "reduce",
-            completionDate: "01/01/2022"
-        }
-    ];
+    const [goalData, setGoalData] = useState([]);
+
+    useEffect(() => {
+
+        const data = axios.get(`/api/goals/list/${window.user.userData.id}`);
+
+        data.then(res => {
+            const goals = res.data;
+            setGoalData(goals);
+        })
+
+        console.log(goalData);
+
+
+    }, []);
 
     return (
         <Table className="tablesorter" responsive>
@@ -22,7 +29,6 @@ export default function GoalList(props) {
                     <th>Name</th>
                     <th>Target Type</th>
                     <th>Target</th>
-                    <th>Habit</th>
                     <th className="text-center">Completion Date</th>
                 </tr>
             </thead>
