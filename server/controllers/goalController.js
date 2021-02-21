@@ -8,13 +8,8 @@ module.exports = {
         let { _id } = req.body.data
         let goalList = Goal.find({ _id: _id });
         console.log(goalList);
-        res.json(goalList);
+        res.json(goalList)
 
-        // if (req.goal) {
-        //     return res.json({ goal});
-        // } else {
-        //     return res.json({ goal: null });
-        // }
     },
     create: (req, res) => {
         console.log(req.body);
