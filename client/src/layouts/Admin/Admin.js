@@ -76,16 +76,6 @@ function Admin(props) {
   }, [location]);
 
 
-  //fetch goals from the database and store in the window object
-  useEffect(() => {
-      const data = axios.get(`/api/goals/list/${window.user._id}`);
-  
-      data.then(res => {
-        const goals = res.data;
-        window.goals = goals;
-      });
-  }, []);
-
 
   // this function opens and closes the sidebar on small devices
   const toggleSidebar = () => {
