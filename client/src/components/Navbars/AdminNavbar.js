@@ -38,7 +38,6 @@ import axios from "axios";
 
 function AdminNavbar(props) {
   const [collapseOpen, setcollapseOpen] = useState(false);
-  const [modalSearch, setmodalSearch] = useState(false);
   const [color, setcolor] = useState("navbar-transparent");
 
   const history = useHistory()
