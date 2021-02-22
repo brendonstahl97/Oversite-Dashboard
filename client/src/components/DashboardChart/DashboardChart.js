@@ -135,10 +135,8 @@ export default function DashboardChart(props) {
                             options={chartExample1.options}
                         />
                     ) : (
-                        <h3 className="text-center">Add at least one update to the goal to see it here</h3>
-                    )
-
-                    }
+                            <h3 className="text-center">Add at least one update to the goal to see it here</h3>
+                        )}
                 </div>
             </CardBody>
         </Card>
