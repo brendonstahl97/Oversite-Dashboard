@@ -3,9 +3,10 @@
 */
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
+const mongoUrl = process.env.MONGODB_URI || 'mongodb://localhost/oversite';
 
 mongoose.connect(
-	process.env.MONGODB_URI || 'mongodb://localhost/oversite',
+	mongoUrl,
 	{
 	  useNewUrlParser: true,
 	  useUnifiedTopology: true,
@@ -22,7 +23,7 @@ db.on('error', err => {
 });
 
 db.once('open', () => {
-	console.log(`You have successfully connected to your mongo database`);
+	console.log(`You have successfully connected to your mongo database at ${mongoUrl}`);
 });
 
 module.exports = db;
