@@ -215,5 +215,5 @@ let chartExample1 = {
 
 
 module.exports = {
-  chartExample1, // in src/views/Dashboard.js
+  chartExample1
 };

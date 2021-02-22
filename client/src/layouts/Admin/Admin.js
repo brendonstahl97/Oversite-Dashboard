@@ -16,7 +16,7 @@
 
 */
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
@@ -30,7 +30,6 @@ import routes from "routes.js";
 
 import logo from "assets/img/angrymom.png";
 import { BackgroundColorContext } from "contexts/BackgroundColorContext";
-import axios from "axios";
 
 var ps;
 
