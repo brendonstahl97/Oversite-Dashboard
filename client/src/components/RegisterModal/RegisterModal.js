@@ -36,7 +36,13 @@ const RegisterModal = (props) => {
     console.log('Button click ...');
 
     useAxios.post('/api/auth/signup', userState)
-      .then(history.push("/splash/login"));
+      .then(res => {
+        console.log(res.data);
+        if(res.data._id) {
+          history.push("/splash/login");
+        }
+      }
+        );
   };
 
   const updateState = (e) => {
