@@ -29,7 +29,7 @@ function Dashboard(props) {
               {window.goals.map((goal, index) => {
                 return (
                   <DashboardChart
-                    goalName={goal.goalName}
+                    goal={goal}
                     key={goal._id}
                   />
                 );

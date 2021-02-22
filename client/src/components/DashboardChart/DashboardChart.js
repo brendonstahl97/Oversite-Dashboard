@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import classNames from "classnames";
+
 // react plugin used to create charts
 import { Line } from "react-chartjs-2";
+
+// core components
+import { chartExample1 } from "variables/charts.js";
 
 // reactstrap components
 import {
@@ -15,16 +19,44 @@ import {
     Col,
 } from "reactstrap";
 
-// core components
-import {
-    chartExample1,
-} from "variables/charts.js";
 
 export default function DashboardChart(props) {
 
-    const [bigChartData, setbigChartData] = useState("data1");
-    const setBgChartData = (name) => {
-        setbigChartData(name);
+    const labels = props.goal.goalLog.map(dataObj => dataObj.date);
+
+    const data = props.goal.goalLog.map(dataObj => dataObj.data);
+
+    const chartData = (canvas) => {
+        let ctx = canvas.getContext("2d");
+
+        let gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
+
+        gradientStroke.addColorStop(1, "rgba(29,140,248,0.2)");
+        gradientStroke.addColorStop(0.4, "rgba(29,140,248,0.0)");
+        gradientStroke.addColorStop(0, "rgba(29,140,248,0)"); //blue colors
+
+        return {
+            labels: labels,
+            datasets: [
+                {
+                    label: props.goal.unitType,
+                    fill: true,
+                    backgroundColor: gradientStroke,
+                    borderColor: "#1f8ef1",
+                    borderWidth: 2,
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    pointBackgroundColor: "#1f8ef1",
+                    pointBorderColor: "rgba(255,255,255,0)",
+                    pointHoverBackgroundColor: "#1f8ef1",
+                    pointBorderWidth: 20,
+                    pointHoverRadius: 4,
+                    pointHoverBorderWidth: 15,
+                    pointRadius: 4,
+                    data: data,
+                },
+            ],
+        };
     };
 
     return (
@@ -32,10 +64,9 @@ export default function DashboardChart(props) {
             <CardHeader>
                 <Row>
                     <Col className="text-left" sm="6">
-                        {/* <h5 className="card-category">Total Shipments</h5> */}
-                        <CardTitle tag="h2">{props.goalName}</CardTitle>
+                        <CardTitle tag="h2">{props.goal.goalName}</CardTitle>
                     </Col>
-                    <Col sm="6">
+                    {/* <Col sm="6">
                         <ButtonGroup
                             className="btn-group-toggle float-right"
                             data-toggle="buttons"
@@ -92,15 +123,22 @@ export default function DashboardChart(props) {
                                 </span>
                             </Button>
                         </ButtonGroup>
-                    </Col>
+                    </Col> */}
                 </Row>
             </CardHeader>
             <CardBody>
+
                 <div className="chart-area">
-                    <Line
-                        data={chartExample1[bigChartData]}
-                        options={chartExample1.options}
-                    />
+                    {props.goal.goalLog.length > 0 ? (
+                        <Line
+                            data={chartData}
+                            options={chartExample1.options}
+                        />
+                    ) : (
+                        <h3 className="text-center">Add at least one update to the goal to see it here</h3>
+                    )
+
+                    }
                 </div>
             </CardBody>
         </Card>
