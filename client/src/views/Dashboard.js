@@ -30,6 +30,7 @@ function Dashboard(props) {
                 return (
                   <DashboardChart
                     goalName={goal.goalName}
+                    key={goal._id}
                   />
                 );
               })}

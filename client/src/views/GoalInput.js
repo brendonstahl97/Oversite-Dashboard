@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Row, Col, Card, CardHeader, CardTitle, Button, Form, FormGroup, Label, Input, Alert, CardBody } from 'reactstrap';
-import useAxios from 'axios';
+import axios from 'axios';
 
 
 import GoalUpdate from "../components/GoalUpdate/GoalUpdate.js";
 
 
 function NewGoal(props) {
+
+  const history = useHistory();
+
   //alert
   const [visible, setVisible] = useState(false);
 
@@ -29,7 +33,7 @@ function NewGoal(props) {
   useEffect(() => {
     setGoalState({
       ...goalState,
-      userId: window.user.id
+      userId: window.user._id
     });
   }, []);
 
@@ -50,9 +54,19 @@ function NewGoal(props) {
       //throw alert
       setVisible(true);
     } else {
-      useAxios.post('/api/goals', goalState).then((res) =>
-        console.log(res));
-    }
+      axios.post('/api/goals', goalState).then((res) => {
+
+        const data = axios.get(`/api/goals/list/${window.user._id}`);
+
+        data.then(res => {
+          const goals = res.data;
+          window.goals = goals;
+          console.log("LOGIN GOALS:", window.goals);
+
+          history.push("/admin/dashboard");
+        });
+      });
+    };
   };
 
   const updateState = (e) => {
