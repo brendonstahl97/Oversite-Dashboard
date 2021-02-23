@@ -12,7 +12,6 @@ export default function GoalList(props) {
                     <th>Name</th>
                     <th>Unit of Measure</th>
                     <th>Goal Type</th>
-                    <th>Target Type</th>
                     <th>Target</th>
                     <th>Completion Date</th>
                 </tr>
