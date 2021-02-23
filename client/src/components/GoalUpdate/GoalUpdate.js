@@ -41,7 +41,7 @@ const GoalUpdate = (props) => {
                         </CardHeader>
                         <CardBody>
                             <Form>
-                                <Label for="goalTypeSelect">Increase or Reduce</Label>
+                                <Label for="goalTypeSelect">Which goal needs an update?</Label>
                                 <Input type="select" name="goalIndex" id="goalTypeSelect" onChange={updateGoalState}>
                                     {window.goals.map((goal, index) => {
                                         return <GoalSelectionOption goalName={goal.goalName} goalIndex={index} />
