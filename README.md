@@ -11,12 +11,7 @@ Oversite is a goal tracking app with a twist; if you don't meet your goals, we t
 * [Installation](#installation)
 * [Technologies Used](#technologies-used)
 * [Usage](#file-structure)
-* [Browser Support](#browser-support)
-* [Resources](#resources)
-* [Reporting Issues](#reporting-issues)
-* [Technical Support or Questions](#technical-support-or-questions)
-* [Licensing](#licensing)
-* [Useful Links](#useful-links)
+* [Contributing](#contributing)
 
 
 
