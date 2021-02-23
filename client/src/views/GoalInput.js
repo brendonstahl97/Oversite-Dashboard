@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import { Row, Col, Card, CardHeader, CardTitle, Button, Form, FormGroup, Label, Input, Alert, CardBody } from 'reactstrap';
 import axios from 'axios';
-
-
-import GoalUpdate from "../components/GoalUpdate/GoalUpdate.js";
-
+import { useHistory } from 'react-router-dom';
+import Win from "../utils/Win";
 
 function NewGoal(props) {
 
@@ -54,15 +51,7 @@ function NewGoal(props) {
       setVisible(true);
     } else {
       axios.post('/api/goals', goalState).then((res) => {
-
-        const data = axios.get(`/api/goals/list/${window.user._id}`);
-
-        data.then(res => {
-          const goals = res.data;
-          window.goals = goals;
-
-          history.push("/admin/dashboard");
-        });
+        Win.updateGoals(history);
       });
     };
   };
@@ -171,8 +160,6 @@ function NewGoal(props) {
             </CardBody>
 
           </Card>
-
-          <GoalUpdate userId={goalState.userId} />
 
         </Col>
 

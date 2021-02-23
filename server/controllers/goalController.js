@@ -35,9 +35,23 @@ module.exports = {
     },
 
     //add a Daily update to our goal Data.
-    addData: (req, res) => {
-        const { data } = req.body;
-        console.log(data);
-        return res;
+    addData: async (req, res) => {
+        const { goalIndex, goalDate, goalData } = req.body;
+
+        const goalDoc = await Goal.findById(req.params._id);
+
+        if (goalDoc.goalLog.length > 0) {
+            const latestDate = goalDoc.goalLog[goalDoc.goalLog.length - 1].goalDate;
+            if (latestDate != new Date().toLocaleDateString("en-US")) {
+                goalDoc.goalLog.push({data: goalData, date: goalDate});
+            };
+        } else {
+            goalDoc.goalLog.push({data: goalData, date: goalDate});
+        }
+
+        goalDoc.save((err, savedGoal) => {
+            if (err) return res.json(err);
+            return res.json(savedGoal);
+        });
     }
 };
