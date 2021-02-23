@@ -5,8 +5,6 @@ import useAxios from 'axios';
 const GoalUpdate = (props) => {
     var today = new Date();
 
-    console.log(today.toLocaleDateString("en-US"));
-
     const [goalState, setGoalState] = useState({
         userId: props.userId,
         name: "",
@@ -18,23 +16,14 @@ const GoalUpdate = (props) => {
 
     const handleClick = (e) => {
         e.preventDefault();
-        console.table(goalState);
-        console.log('Button click ...');
 
         useAxios.post('/api/goals/update', {
             data: [
                 goalState,
                 today.toLocaleDateString("en-US")
             ]
-        }).then((res) => console.log(res));
+        });
     };
-
-    // const handleGetGoals = () => {
-    //     useAxios.get(`/api/goals/list/${props.userId}`)
-    //         .then(res => {
-    //             console.log(res);
-    //         });
-    // };
 
     const updateState = (e) => {
         setGoalState({

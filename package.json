@@ -34,6 +34,8 @@
     "mongoose": "^5.3.16",
     "mongoose-type-email": "^1.1.2",
     "morgan": "^1.10.0",
+    "node-cron": "^2.0.3",
+    "nodemailer": "^6.4.18",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "uuid": "^8.3.2"

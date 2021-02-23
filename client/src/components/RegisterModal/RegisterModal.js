@@ -33,11 +33,9 @@ const RegisterModal = (props) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.log('Button click ...');
 
     useAxios.post('/api/auth/signup', userState)
       .then(res => {
-        console.log(res.data);
         if(res.data._id) {
           history.push("/splash/login");
         }

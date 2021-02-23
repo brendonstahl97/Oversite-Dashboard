@@ -47,7 +47,6 @@ function NewGoal(props) {
 
     let validate = Object.values(goalState);
     validate.splice(validate.length - 1);
-    console.log(validate)
 
     //Check if a field is empty, throw alert if true.
     if (validate.includes("")) {
@@ -61,7 +60,6 @@ function NewGoal(props) {
         data.then(res => {
           const goals = res.data;
           window.goals = goals;
-          console.log("LOGIN GOALS:", window.goals);
 
           history.push("/admin/dashboard");
         });
@@ -107,38 +105,21 @@ function NewGoal(props) {
                   <h4>
                     I want my
                     <Col xs="auto">
-                      <Label for="unitTypeInput">Unit</Label>
+                      <Label for="unitTypeInput">Unit of Measure</Label>
                       <Input type="text" name="unitType" id="unitTypeInput" placeholder="Number of Cigarettes" onChange={updateState} />
-                    </Col>
-                    <Col xs="auto">
-                      <Label for="targetTypeSelect">On average or as a total</Label>
-                      <Input type="select" name="targetType" id="targetTypeSelect" onChange={updateState}>
-                        <option id="average">Average</option>
-                        <option id="total">Total</option>
-                      </Input>
-                    </Col>
-                    Per
-                    <Col xs="auto">
-                      <Label for="averageTypeSelect">Average Period</Label>
-                      <Input type="select" name="avgPeriod" id="averageTypeSelect" onChange={updateState}>
-                        <option id="day">Day</option>
-                        <option id="week">Week</option>
-                        <option id="week">Month</option>
-                      </Input>
                     </Col>
                     To
                     <Col xs="auto">
-                      <Label for="goalTypeSelect">Select</Label>
+                      <Label for="goalTypeSelect">Increase or Reduce</Label>
                       <Input type="select" name="goalType" id="goalTypeSelect" onChange={updateState}>
                         <option id="reduce">Reduce</option>
                         <option id="increase">Increase</option>
-                        <option id="repeat">Repeat</option>
                       </Input>
                     </Col>
                     To
                     <Col xs="auto">
-                      <Label for="goalTypeSelection">Target Units per Period</Label>
-                      <Input type="number" name="target" id="targetInput" placeholder="1" onChange={updateState} />
+                      <Label for="goalTypeSelection">Goal Target</Label>
+                      <Input type="number" name="target" id="targetInput" placeholder="0" onChange={updateState} />
                     </Col>
                     By
                     <Col xs="auto">
@@ -152,7 +133,7 @@ function NewGoal(props) {
                     </Col>
 
 
-                    <Label for="consequenceTargetContact">Contact Email</Label>
+                    <Label for="consequenceTargetContact">Your Mom's Email Address</Label>
                     <Input
                       type="email"
                       name="consequenceTargetContact"
@@ -172,7 +153,7 @@ function NewGoal(props) {
                     <Input
                       type="text"
                       name="failureMessage"
-                      placeholder="OOPS.  I didn't succeed."
+                      placeholder="Hey Mom, I'm a failure!"
                       onChange={updateState}
                     />
 

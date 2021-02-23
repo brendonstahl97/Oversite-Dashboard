@@ -16,6 +16,9 @@ const routes = require("./routes/index");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+//cron for scheduling emails
+const cron = require('./cron/index');
+
 // Define middleware here
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
@@ -48,6 +51,8 @@ app.use(function(err, req, res, next) {
 	console.error(err.stack);
 	res.status(500);
 });
+
+cron.runJob();
 
 // Start the API server
 app.listen(PORT, function () {

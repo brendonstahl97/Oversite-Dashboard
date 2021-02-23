@@ -31,21 +31,17 @@ const Login = (props) => {
   const handleClick = (e) => {
     e.preventDefault();
 
-    console.log('Button click ...');
-
     axios.post('/api/auth/login', userState)
       .then(res => {
         if (res.data) {
           //assignment of userdata to window object on sucessful login
           window.user = res.data.user;
-          console.log("LOGIN USER DATA:", window.user);
 
           const data = axios.get(`/api/goals/list/${res.data.user._id}`);
   
           data.then(res => {
             const goals = res.data;
             window.goals = goals;
-            console.log("LOGIN GOALS:", window.goals);
 
             history.push("/admin/dashboard");
           });
