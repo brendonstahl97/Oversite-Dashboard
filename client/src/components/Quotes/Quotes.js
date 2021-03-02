@@ -15,13 +15,12 @@ const Quotes = (props) => {
         (result) => {
           setIsLoaded(true);
           setQuote(result.data);
-          console.log("🚀 ~ file: Quotes.js ~ line 20 ~ useEffect ~ result", result.data)
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
         // exceptions from actual bugs in components.
         (error) => {
-            return error
+            // return error
           setIsLoaded(true);
           setError(error);
         }
@@ -34,13 +33,11 @@ const Quotes = (props) => {
     return <div>Loading...</div>;
   } else {
     return (
-      <ul>
-          <li key={quote.id}>
-            {quote.content}
-          </li>
-          <br></br>
-          <p>- {quote.author}</p>
-      </ul>
+        <div>
+            <p key={quote.id}>"{quote.content}"</p>
+            <br></br>
+            <p>- {quote.author}</p>
+        </div>
     );
   };
 };

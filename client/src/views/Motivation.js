@@ -10,7 +10,7 @@ const Motivation = (props) => {
     <>
       <div className="content">
         <Row>
-          <Col>
+          <Col lg="10">
             <Card>
               <CardHeader>
                 <CardTitle tag="h4">Motivational Quote</CardTitle>
