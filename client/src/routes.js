@@ -48,7 +48,7 @@ var routes = [
   {
     path: "/motivation",
     name: "Motivation",
-    icon: "tim-icons icon-trophy",
+    icon: "tim-icons icon-spaceship",
     component: Motivation,
     layout: "/admin",
   }
