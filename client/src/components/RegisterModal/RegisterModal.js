@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import useAxios from "axios";
 import { useHistory } from 'react-router-dom';
-import {
-  BackgroundColorContext,
-  backgroundColors,
-} from "contexts/BackgroundColorContext";
-// import logo from './public/react-logo.png';
 import { AvForm, AvField } from "availity-reactstrap-validation";
 
 
@@ -13,7 +8,6 @@ import { AvForm, AvField } from "availity-reactstrap-validation";
 import {
   Button,
   Card,
-  CardHeader,
   CardBody,
   CardFooter,
   FormGroup,
@@ -26,7 +20,6 @@ import {
 } from "reactstrap";
 
 const RegisterModal = (props) => {
-  const [email, setEmail] = useState(false);
 
   const [userState, setUserState] = useState({
     firstName: "",
@@ -40,10 +33,14 @@ const RegisterModal = (props) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.log('Button click ...');
 
     useAxios.post('/api/auth/signup', userState)
-      .then(history.push("/splash/login"));
+      .then(res => {
+        if(res.data._id) {
+          history.push("/splash/login");
+        }
+      }
+        );
   };
 
   const updateState = (e) => {
@@ -65,85 +62,85 @@ const RegisterModal = (props) => {
                 <CardBody>
                   <Form>
                     <AvForm>
-                    <Row>
-                      <Col className="" md="4">
-                        <FormGroup>
-                          <label>Username</label>
-                          <Input
-                            value={userState.userId}
-                            placeholder=""
-                            name="userId"
-                            type="text"
-                            onChange={updateState}
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col className="" md="4">
-                        <FormGroup>
-                          <label>First Name</label>
-                          <Input
-                            value={userState.firstName}
-                            placeholder=""
-                            name="firstName"
-                            type="text"
-                            onChange={updateState}
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col className="" md="4">
-                        <FormGroup>
-                          <label>Last Name</label>
-                          <Input
-                            value={userState.lastName}
-                            placeholder=""
-                            name="lastName"
-                            type="text"
-                            onChange={updateState}
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col className="" md="6">
-                        <FormGroup>
-                          <label htmlFor="exampleInputEmail1">
-                            Email address
-                        </label>
-                          <AvField
-                            placeholder=""
-                            name="username"
-                            type="email"
-                            value={userState.username}
-                            onChange={updateState} 
-                            validate={{
-                              required: true,
-                              email: true,
-                            }}
+                      <Row>
+                        <Col className="" md="4">
+                          <FormGroup>
+                            <label>Username</label>
+                            <Input
+                              value={userState.userId}
+                              placeholder=""
+                              name="userId"
+                              type="text"
+                              onChange={updateState}
                             />
-                        </FormGroup>
-                      </Col>
-                      <Col className="" md="6">
-                        <FormGroup>
-                          <label>Password</label>
-                          <AvField
-                            placeholder=""
-                            value={userState.password}
-                            name="password"
-                            type="password"
-                            onChange={updateState}
-                            validate={{
-                              required: {
-                                value: true,
-                                errorMessage: "Please enter a password"
-                              },
-                              pattern: {
-                                value: "^[A-Za-z0-9]+$",
-                                errorMessage:
-                                  "Your password must be composed only with letters and numbers"
-                              }
-                            }}
-                          />
-                        </FormGroup>
-                      </Col>
-                    </Row>
+                          </FormGroup>
+                        </Col>
+                        <Col className="" md="4">
+                          <FormGroup>
+                            <label>First Name</label>
+                            <Input
+                              value={userState.firstName}
+                              placeholder=""
+                              name="firstName"
+                              type="text"
+                              onChange={updateState}
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col className="" md="4">
+                          <FormGroup>
+                            <label>Last Name</label>
+                            <Input
+                              value={userState.lastName}
+                              placeholder=""
+                              name="lastName"
+                              type="text"
+                              onChange={updateState}
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col className="" md="6">
+                          <FormGroup>
+                            <label htmlFor="exampleInputEmail1">
+                              Email address
+                        </label>
+                            <AvField
+                              placeholder=""
+                              name="username"
+                              type="email"
+                              value={userState.username}
+                              onChange={updateState}
+                              validate={{
+                                required: true,
+                                email: true,
+                              }}
+                            />
+                          </FormGroup>
+                        </Col>
+                        <Col className="" md="6">
+                          <FormGroup>
+                            <label>Password</label>
+                            <AvField
+                              placeholder=""
+                              value={userState.password}
+                              name="password"
+                              type="password"
+                              onChange={updateState}
+                              validate={{
+                                required: {
+                                  value: true,
+                                  errorMessage: "Please enter a password"
+                                },
+                                pattern: {
+                                  value: "^[A-Za-z0-9]+$",
+                                  errorMessage:
+                                    "Your password must be composed only with letters and numbers"
+                                }
+                              }}
+                            />
+                          </FormGroup>
+                        </Col>
+                      </Row>
                     </AvForm>
                   </Form>
                 </CardBody>

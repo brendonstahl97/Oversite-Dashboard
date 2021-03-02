@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useAxios from "axios";
+import axios from "axios";
 import { useHistory } from 'react-router-dom';
 import { AvForm, AvField } from "availity-reactstrap-validation";
 
@@ -8,12 +8,10 @@ import { AvForm, AvField } from "availity-reactstrap-validation";
 import {
   Button,
   Card,
-  CardHeader,
   CardBody,
   CardFooter,
   FormGroup,
   Form,
-  Input,
   Row,
   Col,
   Jumbotron,
@@ -21,8 +19,7 @@ import {
 } from "reactstrap";
 
 
-const RegisterModal = (props) => {
-
+const Login = (props) => {
 
   const [userState, setUserState] = useState({
     email: "",
@@ -34,15 +31,24 @@ const RegisterModal = (props) => {
   const handleClick = (e) => {
     e.preventDefault();
 
-    console.log('Button click ...');
-
-    useAxios.post('/api/auth/login', userState)
+    axios.post('/api/auth/login', userState)
       .then(res => {
         if (res.data) {
-          history.push("/admin/dashboard");
+          //assignment of userdata to window object on sucessful login
+          window.user = res.data.user;
+
+          const data = axios.get(`/api/goals/list/${res.data.user._id}`);
+  
+          data.then(res => {
+            const goals = res.data;
+            window.goals = goals;
+
+            history.push("/admin/dashboard");
+          });
         };
       });
   };
+
 
   const updateState = (e) => {
     setUserState({
@@ -65,49 +71,49 @@ const RegisterModal = (props) => {
                   <CardBody>
                     <Form>
                       <AvForm>
-                      <Row>
-                        <Col className="" md="6">
-                          <FormGroup>
-                            <label htmlFor="exampleInputEmail1">
-                              Email address
-                        </label>
-                            <AvField
-                              placeholder=""
-                              name="email"
-                              type="email"
-                              value={userState.username}
-                              onChange={updateState} 
-                              validate={{
-                                required: true,
-                                email: true,
-                              }}/>
-                          </FormGroup>
-                        </Col>
-                        <Col className="" md="6">
-                          <FormGroup>
-                            <label>Password</label>
-                            <AvField
-                              placeholder=""
-                              value={userState.password}
-                              name="password"
-                              type="password"
-                              onChange={updateState}
-                              validate={{
-                                required: {
-                                  value: true,
-                                  errorMessage: "Please enter a password"
-                                },
-                                pattern: {
-                                  value: "^[A-Za-z0-9]+$",
-                                  errorMessage:
-                                    "Please enter a valid password"
-                                }
-                              }}
-                            />
-                          </FormGroup>
-                        </Col>
-                      </Row>
-                    </AvForm>
+                        <Row>
+                          <Col className="" md="6">
+                            <FormGroup>
+                              <label htmlFor="exampleInputEmail1">
+                                Email address
+                              </label>
+                              <AvField
+                                placeholder=""
+                                name="email"
+                                type="email"
+                                value={userState.username}
+                                onChange={updateState}
+                                validate={{
+                                  required: true,
+                                  email: true,
+                                }} />
+                            </FormGroup>
+                          </Col>
+                          <Col className="" md="6">
+                            <FormGroup>
+                              <label>Password</label>
+                              <AvField
+                                placeholder=""
+                                value={userState.password}
+                                name="password"
+                                type="password"
+                                onChange={updateState}
+                                validate={{
+                                  required: {
+                                    value: true,
+                                    errorMessage: "Please enter a password"
+                                  },
+                                  pattern: {
+                                    value: "^[A-Za-z0-9]+$",
+                                    errorMessage:
+                                      "Please enter a valid password"
+                                  }
+                                }}
+                              />
+                            </FormGroup>
+                          </Col>
+                        </Row>
+                      </AvForm>
                     </Form>
                   </CardBody>
                   <CardFooter>
@@ -133,4 +139,5 @@ const RegisterModal = (props) => {
   );
 }
 
-export default RegisterModal;
+export default Login;
+

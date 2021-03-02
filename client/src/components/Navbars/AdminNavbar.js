@@ -22,33 +22,23 @@ import classNames from "classnames";
 
 // reactstrap components
 import {
-  Button,
   Collapse,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
   UncontrolledDropdown,
-  Input,
-  InputGroup,
   NavbarBrand,
   Navbar,
   NavLink,
   Nav,
   Container,
-  Modal,
   NavbarToggler,
-  ModalHeader,
 } from "reactstrap";
 import axios from "axios";
 
 function AdminNavbar(props) {
   const [collapseOpen, setcollapseOpen] = useState(false);
-  const [modalSearch, setmodalSearch] = useState(false);
   const [color, setcolor] = useState("navbar-transparent");
-  const [userData, setUserData] = useState({
-    firstName: "",
-    lastName: ""
-  });
 
   const history = useHistory()
 
@@ -60,20 +50,6 @@ function AdminNavbar(props) {
       window.removeEventListener("resize", updateColor);
     };
   });
-
-  useEffect(() => {
-    //populate userData
-    axios.get("/api/auth/user")
-      .then((res) => {
-        console.log(res.data);
-        const { firstName, lastName } = res.data.user;
-        console.log(firstName, " ", lastName);
-        setUserData({
-          firstName: firstName,
-          lastName: lastName
-        });
-      });
-  }, [document.cookie]);
 
 
   // function that adds color white/transparent to the navbar on resize (this is for the collapse)
@@ -92,10 +68,6 @@ function AdminNavbar(props) {
       setcolor("bg-white");
     }
     setcollapseOpen(!collapseOpen);
-  };
-  // this function is to open the Search modal
-  const toggleModalSearch = () => {
-    setmodalSearch(!modalSearch);
   };
 
   const handleLogOut = () => {
@@ -132,7 +104,7 @@ function AdminNavbar(props) {
           </NavbarToggler>
           <Collapse navbar isOpen={collapseOpen}>
             <Nav className="ml-auto" navbar>
-              <h2>Hello, {userData.firstName} {userData.lastName}</h2>
+              <h2>Hello, {window.user.firstName} {window.user.lastName}</h2>
               <UncontrolledDropdown nav>
                 <DropdownToggle
                   caret

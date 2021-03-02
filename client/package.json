@@ -8,11 +8,10 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "5.15.1",
+    "axios": "^0.21.1",
     "bootstrap": "4.5.3",
     "chart.js": "2.9.4",
     "classnames": "2.2.6",
-    "eslint-plugin-flowtype": "5.2.0",
-    "jquery": "3.5.1",
     "node-sass": "4.14.1",
     "node-sass-package-importer": "5.3.2",
     "perfect-scrollbar": "1.5.0",
@@ -23,8 +22,7 @@
     "react-notification-alert": "0.0.13",
     "react-router-dom": "5.2.0",
     "react-scripts": "4.0.1",
-    "reactstrap": "8.7.1",
-    "typescript": "4.1.2"
+    "reactstrap": "8.7.1"
   },
   "scripts": {
     "start": "react-scripts start",

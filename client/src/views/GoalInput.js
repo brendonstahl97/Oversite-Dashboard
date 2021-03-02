@@ -1,36 +1,59 @@
-import React, { useState } from 'react';
-import { Row, Col, Card, CardHeader, CardTitle, Button, Form, FormGroup, Label, Input, CardBody } from 'reactstrap';
-import useAxios from 'axios';
-import { v4 as uuidv4 } from 'uuid';
-import GoalUpdate from "../components/GoalUpdate/GoalUpdate.js"
+import React, { useState, useEffect } from 'react';
+import { Row, Col, Card, CardHeader, CardTitle, Button, Form, FormGroup, Label, Input, Alert, CardBody } from 'reactstrap';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+import Win from "../utils/Win";
 
 function NewGoal(props) {
 
-  //TODO:  
-  //Hook up radio buttons to updateState
-  //Send state info to backend
-  //Potentially refactor to change component where state lives.  Add Context.
+  const history = useHistory();
 
+  //alert
+  const [visible, setVisible] = useState(false);
+
+  //data form
   const [goalState, setGoalState] = useState({
+    userId: "",
     goalName: "",
     unitType: "",
-    goalType: "",
-    targetType: "",
-    target: "",
-    avgPeriod: "",
+    goalType: "Reduce",
+    targetType: "Average",
+    target: 0,
+    avgPeriod: "Day",
     completionDate: "",
-    description: "",
-    habit: undefined,
-    consequences: [],
+    consequenceTargetContact: "",
+    successMessage: "",
+    failureMessage: "",
+    goalLog: []
   });
+
+  useEffect(() => {
+    setGoalState({
+      ...goalState,
+      userId: window.user._id
+    });
+  }, []);
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.table(goalState);
-    console.log('Button click ...');
 
-    useAxios.post('/api/goals', goalState).then((res) =>
-      console.log(res));
+    setGoalState({
+      ...goalState,
+      userId: window.user.id
+    });
+
+    let validate = Object.values(goalState);
+    validate.splice(validate.length - 1);
+
+    //Check if a field is empty, throw alert if true.
+    if (validate.includes("")) {
+      //throw alert
+      setVisible(true);
+    } else {
+      axios.post('/api/goals', goalState).then((res) => {
+        Win.updateGoals(history);
+      });
+    };
   };
 
   const updateState = (e) => {
@@ -39,6 +62,11 @@ function NewGoal(props) {
       [e.target.name]: e.target.value
     });
   };
+
+
+
+  const onDismiss = () => setVisible(false);
+
 
   return (
 
@@ -54,88 +82,84 @@ function NewGoal(props) {
             <CardBody>
               <Form>
                 <FormGroup>
-                  <Label for="exampleEmail">Goal Name</Label>
+                  <Label for="goalNameInput">Goal Name</Label>
                   <Input
                     type="text"
-                    name="goal"
-                    id="newGoal"
+                    name="goalName"
                     placeholder="Be more awesome"
                     onChange={updateState}
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label for="exampleDate">Completion Date</Label>
-                  <Input
-                    type="date"
-                    name="date"
-                    id="completionDate"
-                    placeholder="date placeholder"
-                    onChange={updateState}
-                  />
+                  <h4>
+                    I want my
+                    <Col xs="auto">
+                      <Label for="unitTypeInput">Unit of Measure</Label>
+                      <Input type="text" name="unitType" id="unitTypeInput" placeholder="Number of Cigarettes" onChange={updateState} />
+                    </Col>
+                    To
+                    <Col xs="auto">
+                      <Label for="goalTypeSelect">Increase or Reduce</Label>
+                      <Input type="select" name="goalType" id="goalTypeSelect" onChange={updateState}>
+                        <option id="reduce">Reduce</option>
+                        <option id="increase">Increase</option>
+                      </Input>
+                    </Col>
+                    To
+                    <Col xs="auto">
+                      <Label for="goalTypeSelection">Goal Target</Label>
+                      <Input type="number" name="target" id="targetInput" placeholder="0" onChange={updateState} />
+                    </Col>
+                    By
+                    <Col xs="auto">
+                      <Label for="dateInput">Completion Date</Label>
+                      <Input
+                        type="date"
+                        name="completionDate"
+                        placeholder="date placeholder"
+                        onChange={updateState}
+                      />
+                    </Col>
+
+
+                    <Label for="consequenceTargetContact">Your Mom's Email Address</Label>
+                    <Input
+                      type="email"
+                      name="consequenceTargetContact"
+                      placeholder="MyMom@MyMomsEmail.com"
+                      onChange={updateState}
+                    />
+
+                    <Label for="successMessage">Success Message</Label>
+                    <Input
+                      type="text"
+                      name="successMessage"
+                      placeholder="Hey Mom I totally crushed my goal!"
+                      onChange={updateState}
+                    />
+
+                    <Label for="failureMessage">Failure Message</Label>
+                    <Input
+                      type="text"
+                      name="failureMessage"
+                      placeholder="Hey Mom, I'm a failure!"
+                      onChange={updateState}
+                    />
+
+
+                  </h4>
+
                 </FormGroup>
-                <FormGroup>
-                  <Label for="exampleText">Desciption</Label>
-                  <Input
-                    type="textarea"
-                    name="description"
-                    id="description"
-                    onChange={updateState}
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <Label for="exampleSelect">Select</Label>
-                  <Input type="select" name="habit" id="habitSelect" onChange={updateState}>
-                    <option id="reduce">Reduce</option>
-                    <option id="increase">Increase</option>
-                    <option id="repeat">Repeat</option>
-                  </Input>
-                </FormGroup>
-                {/* <FormGroup>
-        <Label for="exampleSelectMulti">Select Multiple</Label>
-        <Input type="select" name="selectMulti" id="exampleSelectMulti" multiple>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </Input>
-      </FormGroup> */}
-                <FormGroup tag="fieldset">
-                  <legend>Consequence</legend>
-                  <FormGroup check>
-                    <Label check>
-                      <Input type="radio" name="consequence1" id="consequence1" />{' '}
-            Message someone if I succeed
-          </Label>
-                    <Input type="text" name="phoneNumber1" id="phoneNumber1" placeholder="123-456-7890" />
-                  </FormGroup>
-                  <FormGroup check>
-                    <Label check>
-                      <Input type="radio" name="consequence2" id="consequence2" />{' '}
-            Message someone if I fail
-          </Label>
-                    <Input type="text" name="phoneNumber2" id="phoneNumber2" placeholder="123-456-7890" />
-                  </FormGroup>
-                  <FormGroup check>
-                    <Label check>
-                      <Input type="radio" name="noConsequence" id="noConsequence" />{' '}
-            No Consequence
-          </Label>
-                  </FormGroup>
-                </FormGroup>
-                {/* <FormGroup check>
-        <Label check>
-          <Input type="checkbox" />{' '}
-          Check me out
-        </Label>
-      </FormGroup> */}
+                <Alert color="danger" isOpen={visible} toggle={onDismiss}>
+                  Please ensure that you filled out the goal input form correctly!
+                </Alert>
+
                 <Button onClick={handleClick}> Submit</Button>
+
               </Form>
             </CardBody>
 
           </Card>
-
-          <GoalUpdate />
 
         </Col>
 
@@ -144,6 +168,6 @@ function NewGoal(props) {
     </div>
   );
 
-}
+};
 
 export default NewGoal;

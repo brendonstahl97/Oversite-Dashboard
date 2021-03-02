@@ -1,21 +1,19 @@
+const { Goal } = require("../models");
 const db = require("../models");
 
 // Defining methods for the Goals Controller
 module.exports = {
-    getGoal: (req, res, next) => {
-        console.log('===== goal!!======');
-        console.log(req.goal);
-        if (req.goal) {
-            return res.json({ goal: req.goal });
-        } else {
-            return res.json({ goal: null });
-        }
+    listGoals: async (req, res, next) => {
+        console.log(req.params);
+        let goalList = await Goal.find({ userId: req.params._id });
+        res.json(goalList);
     },
     create: (req, res) => {
         console.log(req.body);
-        const { goalName, unitType, description, goalType, targetType, target, avgPeriod, completionDate, consequenceTargetContact, successMessage, failureMessage } = req.body;
+        const { userId, goalName, unitType, description, goalType, targetType, target, avgPeriod, completionDate, consequenceTargetContact, successMessage, failureMessage } = req.body;
 
         const newGoal = new db.Goal({
+            userId: userId,
             goalName: goalName,
             unitType: unitType,
             description: description,
@@ -37,9 +35,23 @@ module.exports = {
     },
 
     //add a Daily update to our goal Data.
-    addData: (req, res) => {
-        const { data } = req.body;
-        console.log(data);
-        return res;
+    addData: async (req, res) => {
+        const { goalIndex, goalDate, goalData } = req.body;
+
+        const goalDoc = await Goal.findById(req.params._id);
+
+        if (goalDoc.goalLog.length > 0) {
+            const latestDate = goalDoc.goalLog[goalDoc.goalLog.length - 1].goalDate;
+            if (latestDate != new Date().toLocaleDateString("en-US")) {
+                goalDoc.goalLog.push({data: goalData, date: goalDate});
+            };
+        } else {
+            goalDoc.goalLog.push({data: goalData, date: goalDate});
+        }
+
+        goalDoc.save((err, savedGoal) => {
+            if (err) return res.json(err);
+            return res.json(savedGoal);
+        });
     }
 };

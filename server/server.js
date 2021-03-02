@@ -18,6 +18,9 @@ const routes = require("./routes/index");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+//cron for scheduling emails
+const cron = require('./cron/index');
+
 // Define middleware here
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
@@ -30,8 +33,6 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Passport
-
-
 app.use(session({
   secret: process.env.AUTH_SECRET,
   store: new MongoStore({ mongooseConnection: dbConnection }),
@@ -71,6 +72,7 @@ app.get('/random', (req, res) => {
   )
 });
 
+cron.runJob();
 
 // Start the API server
 app.listen(PORT, function () {
