@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import axios from "axios";
 
-const Quotes = () => {
+const Quotes = (props) => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [quote, setQuote] = useState([]);
@@ -9,20 +10,18 @@ const Quotes = () => {
   // this useEffect will run once
   // similar to componentDidMount()
   useEffect(() => {
-    fetch("https://api.quotable.io/random", 
-    { mode: 'no-cors'})
-      .then(res => res.json())
+    axios.get("https://api.quotable.io/random")
       .then(
         (result) => {
           setIsLoaded(true);
-          setQuote(result);
-          console.log("🚀 ~ file: Quotes.js ~ line 20 ~ useEffect ~ result", result)
+          setQuote(result.data);
+          console.log("🚀 ~ file: Quotes.js ~ line 20 ~ useEffect ~ result", result.data)
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
         // exceptions from actual bugs in components.
         (error) => {
-            // return error
+            return error
           setIsLoaded(true);
           setError(error);
         }
@@ -36,14 +35,14 @@ const Quotes = () => {
   } else {
     return (
       <ul>
-          {quote.map(q => (
-          <li key={q.id}>
-            {q.content} - {q.author}
+          <li key={quote.id}>
+            {quote.content}
           </li>
-          ))}
+          <br></br>
+          <p>- {quote.author}</p>
       </ul>
     );
-  }
+  };
 };
 
 
