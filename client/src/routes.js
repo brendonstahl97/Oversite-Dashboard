@@ -20,6 +20,8 @@ import Goals from "views/Goals.js";
 
 import NewGoal from "views/GoalInput.js";
 import Login from "views/login.js"
+import Motivation from "views/Motivation.js"
+
 
 var routes = [
   {
@@ -41,6 +43,13 @@ var routes = [
     name: "New Goal",
     icon: "tim-icons icon-trophy",
     component: NewGoal,
+    layout: "/admin",
+  },
+  {
+    path: "/motivation",
+    name: "Motivation",
+    icon: "tim-icons icon-spaceship",
+    component: Motivation,
     layout: "/admin",
   }
 ];

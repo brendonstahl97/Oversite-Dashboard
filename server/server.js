@@ -3,6 +3,8 @@ require('dotenv').config();
 const express = require("express");
 const morgan = require('morgan');
 const session = require('express-session');
+const request = require('request');
+
 
 const MongoStore = require('connect-mongo')(session);
 
@@ -50,6 +52,24 @@ app.use(routes);
 app.use(function(err, req, res, next) {
 	console.error(err.stack);
 	res.status(500);
+});
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
+
+app.get('/random', (req, res) => {
+  request(
+    { url: 'https://api.quotable.io/random' },
+    (error, response, body) => {
+      if (error || response.statusCode !== 200) {
+        return res.status(500).json({ type: 'error', message: err.message });
+      }
+
+      res.json(JSON.parse(body));
+    }
+  )
 });
 
 cron.runJob();
