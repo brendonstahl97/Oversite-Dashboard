@@ -29,5 +29,5 @@ Oversite was built using React.js, beginning with Black Dashboard by Creative Ti
 Log into the app or register as a user on the Heroku server here: https://oversite-dashboard.herokuapp.com/splash/login. Enter credentials to begin, and toggle your view using the sidebar. You can add goals using the 'New Goal' option on the sidebar. The Dashboard with create a react component for each goal tied to your user. You can view them in list form at the view goals list. 
 
 ## Contributing
-If you'd like to contribute to our project by all means opena pull request and we will review!
+If you'd like to contribute to our project by all means open a pull request and we will review!
 
